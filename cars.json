@@ -1,0 +1,69 @@
+[
+  {
+    "listing_id": "1",
+    "make": "BMW",
+    "model": "Seria 3 320d xDrive AT MHEV",
+    "year": 2021,
+    "mileage_km": 94020,
+    "fuel_type": "Diesel",
+    "transmission": "Automatic",
+    "power_hp": 190,
+    "price_euro": 24200,
+    "country": "Romania",
+    "first_seen_at": null,
+    "last_seen_at": null,
+    "source": "Autovit.ro",
+    "premium_features": [
+      "Asistent de parcare cameră video",
+      "Încalzire scaune"
+    ],
+    "basic_features": [
+      "Geamuri electrice",
+      "Senzor de ploaie"
+    ]
+  },
+  {
+    "listing_id": "2",
+    "make": "Tesla",
+    "model": "Model 3 RWD",
+    "year": 2023,
+    "mileage_km": 73244,
+    "fuel_type": "Electric",
+    "transmission": null,
+    "power_hp": 283,
+    "price_euro": 26999,
+    "country": "Romania",
+    "first_seen_at": null,
+    "last_seen_at": null,
+    "source": "Autovit.ro",
+    "premium_features": [
+      "Acoperiş panoramic",
+      "Scaune ventilate"
+    ],
+    "basic_features": [
+      "Bluetooth",
+      "ABS"
+    ]
+  },
+  {
+    "listing_id": "3",
+    "make": "BMW",
+    "model": "Seria 3 330d xDrive AT MHEV",
+    "year": 2021,
+    "mileage_km": 66296,
+    "fuel_type": "Diesel",
+    "transmission": "Automatic",
+    "power_hp": 286,
+    "price_euro": 31990,
+    "country": "Romania",
+    "first_seen_at": null,
+    "last_seen_at": null,
+    "source": "Autovit.ro",
+    "premium_features": [
+      "Trapă"
+    ],
+    "basic_features": [
+      "Apple CarPlay"
+    ]
+  }
+]
