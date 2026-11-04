@@ -49,25 +49,18 @@ Fiecare înregistrare va reprezenta un anunț auto și va conține atributele re
 | listing_id       | string       | Identificator intern al înregistrării     |
 | make             | string       | Marca vehiculului                         |
 | model            | string       | Modelul vehiculului                       |
-| version          | string       | Versiunea vehiculului                     |
 | year             | integer      | Anul primei înmatriculări                 |
-| generation       | string       | Generația vehiculului                     |
-| first_registration_date | string | Data primei înmatriculări             |
 | mileage_km       | integer      | Kilometrajul în kilometri                 |
 | fuel_type        | string       | Tipul de combustibil                      |
 | transmission     | string       | Tipul transmisiei                         |
-| body_type        | string       | Tipul caroseriei                          |
-| engine_displacement_cm3 | integer | Cilindreea motorului în cm³          |
 | power_hp         | integer/null | Puterea in HP                             |
 | price_euro       | number       | Prețul cerut                              |
-| color            | string       | Culoarea vehiculului                      |
-| doors            | integer      | Numărul de portiere                       |
 | country          | string       | Țara în care este publicat anunțul        |
 | first_seen_at    | datetime     | Momentul primei observări de către sistem |
 | last_seen_at     | datetime     | Momentul ultimei observări                |
 | source           | string       | Sursa anunțului                           |
-| features         | json         | Lista tuturor dotărilor                   |
-| equipment        | json         | Dotările grupate pe categorii             |
+| premium_features | json         | Lista de dotari premium                   |
+| basic_features   | json         | Lista de dotari standard                  |
 
 
 
