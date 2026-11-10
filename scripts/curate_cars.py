@@ -4,7 +4,8 @@ Curate the Autovit.ro listings scrape (cars.json) for a used-car price model.
 Reads the raw JSON array written by car_details.py, fixes the scraper's known
 defects, and writes two Parquet tables:
 
-  <out>/listings_clean   every real listing, de-duplicated and cleaned.
+  <out>/listings_clean   every real listing with an equipment list, de-duplicated and cleaned
+                         (KEEP_ONLY_WITH_FEATURES = False keeps the ones without a list too).
                          `dq_flags` records each automatic correction;
                          `train_exclude_reasons` says why a row is left out
                          of the training set (empty = included).
@@ -37,7 +38,8 @@ from pyspark.sql import types as T
 # ---------------------------------------------------------------------------
 # Thresholds (tune here)
 # ---------------------------------------------------------------------------
-NEW_CAR_MAX_KM = 100           # dealers list new cars at 1 / 5 / 10 km
+KEEP_ONLY_WITH_FEATURES = True # equipment matters for price, so listings without a list are dropped
+NEW_CAR_MAX_KM = 100          # dealers list new cars at 1 / 5 / 10 km
 MAX_KM_PER_YEAR = 80_000       # above this, for a used car, year or mileage is likely wrong
 CLASSIC_MIN_AGE_YEARS = 30     # historic vehicles: priced as collectibles, not by depreciation
 MICROCAR_MAX_HP = 50          # licence-free quadricycles (Aixam, Ligier, Tazzari...)
@@ -161,6 +163,13 @@ def read_raw(spark: SparkSession, path: str) -> DataFrame:
 def drop_empty_listings(df: DataFrame) -> DataFrame:
     """Failed scrapes: only listing_id and the metadata fields survived."""
     return df.filter(F.col("make").isNotNull() | F.col("price_euro").isNotNull())
+
+
+def keep_listings_with_features(df: DataFrame) -> DataFrame:
+    """Listings whose equipment list has at least one real entry (not '', 'true', 'false')."""
+    real = F.filter(F.coalesce("features", F.array().cast("array<string>")),
+                    lambda x: (F.trim(x) != "") & ~F.lower(x).isin("true", "false"))
+    return df.filter(F.size(real) > 0)
 
 
 def realign_shifted_columns(df: DataFrame) -> DataFrame:
@@ -434,8 +443,8 @@ def write_readable_copies(df: DataFrame, path_stem: str) -> None:
 # ---------------------------------------------------------------------------
 # Report
 # ---------------------------------------------------------------------------
-def print_report(raw_n: int, listings_n: int, deduped_input_n: int, clean: DataFrame, train: DataFrame,
-                 dropped_label: str = "empty scrapes dropped") -> None:
+def print_report(raw_n: int, dropped: dict, deduped_input_n: int, clean: DataFrame, train: DataFrame) -> None:
+    """`dropped`: rows removed before cleaning, as {label: count}."""
     clean_n, train_n = clean.count(), train.count()
 
     def counts(column: str) -> list:
@@ -444,7 +453,8 @@ def print_report(raw_n: int, listings_n: int, deduped_input_n: int, clean: DataF
 
     print("\n================ CURATION REPORT ================")
     print(f"raw rows                     {raw_n:>6}")
-    print(f"{dropped_label:<29}{raw_n - listings_n:>6}")
+    for label, n in dropped.items():
+        print(f"{label:<29}{n:>6}")
     print(f"duplicate listings dropped   {deduped_input_n - clean_n:>6}")
     print(f"listings_clean rows          {clean_n:>6}")
     print(f"train rows                   {train_n:>6}")
@@ -482,7 +492,8 @@ def main() -> None:
     spark.sparkContext.setLogLevel("WARN")
 
     raw = read_raw(spark, args.input).cache()
-    listings = drop_empty_listings(raw)
+    scraped = drop_empty_listings(raw).cache()
+    listings = keep_listings_with_features(scraped) if KEEP_ONLY_WITH_FEATURES else scraped
 
     cleaned = (listings
                .transform(realign_shifted_columns)
@@ -510,7 +521,11 @@ def main() -> None:
     # data/ is git-ignored, so the instructions live next to this script and are copied in
     shutil.copyfile(Path(__file__).with_name("curated_data_README.md"), Path(args.out) / "README.md")
 
-    print_report(raw.count(), listings.count(), cleaned.count(), clean, train)
+    raw_n, scraped_n = raw.count(), scraped.count()
+    dropped = {"empty scrapes dropped": raw_n - scraped_n}
+    if KEEP_ONLY_WITH_FEATURES:
+        dropped["without features dropped"] = scraped_n - listings.count()
+    print_report(raw_n, dropped, cleaned.count(), clean, train)
     print(f"written to {args.out}/:")
     print("  listings_clean/  train/              Parquet, for pandas / Spark")
     print("  listings_clean.json  train.json      open in an editor")

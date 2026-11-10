@@ -35,7 +35,9 @@ from curate_cars import as_map, is_true, to_int, with_columns
 # ---------------------------------------------------------------------------
 # Settings (tune here)
 # ---------------------------------------------------------------------------
-KEEP_ONLY_WITH_FEATURES = True
+# Whether listings without an equipment list are dropped is set by KEEP_ONLY_WITH_FEATURES in
+# curate_cars.py, so both sites follow the same rule. In this scrape only the first ~18 minutes
+# opened each car's page; after that the equipment list is empty for every listing.
 READABLE_COPIES_MAX_ROWS = 200_000   # above this the .json/.csv copies would be ~1 GB, so they are skipped
 
 # Values outside these ranges are placeholders or typos in this scrape: set to null and flagged.
@@ -125,14 +127,6 @@ def has_feature_list(record: dict) -> bool:
 
 def read_raw(spark: SparkSession, json_lines_path: str) -> DataFrame:
     return spark.read.schema(RAW_SCHEMA).option("mode", "FAILFAST").json(json_lines_path)
-
-
-def keep_listings_with_features(df: DataFrame) -> DataFrame:
-    """Only the first ~18 minutes of this scrape opened each car's page; after that the
-    equipment list is null for every listing."""
-    real = F.filter(F.coalesce("features", F.array().cast("array<string>")),
-                    lambda x: (F.trim(x) != "") & ~F.lower(x).isin("true", "false"))
-    return df.filter(F.size(real) > 0)
 
 
 def standardise_names(df: DataFrame) -> DataFrame:
@@ -261,10 +255,11 @@ def main() -> None:
     tmp = tempfile.TemporaryDirectory()
     lines_path = str(Path(tmp.name) / "listings.jsonl")
     print("converting the JSON array to JSON Lines...")
-    raw_n = json_array_to_lines(args.input, lines_path, keep=has_feature_list if KEEP_ONLY_WITH_FEATURES else None)
+    only_with_features = base.KEEP_ONLY_WITH_FEATURES
+    raw_n = json_array_to_lines(args.input, lines_path, keep=has_feature_list if only_with_features else None)
 
     raw = read_raw(spark, lines_path)
-    listings = (keep_listings_with_features(raw) if KEEP_ONLY_WITH_FEATURES else raw).cache()
+    listings = (base.keep_listings_with_features(raw) if only_with_features else raw).cache()
 
     cleaned = (listings
                .transform(standardise_names)
@@ -295,8 +290,8 @@ def main() -> None:
             base.write_readable_copies(table, f"{args.out}/{name}")
     shutil.copyfile(Path(__file__).with_name("curated_autoscout_README.md"), Path(args.out) / "README.md")
 
-    dropped = "without features dropped" if KEEP_ONLY_WITH_FEATURES else "dropped"
-    base.print_report(raw_n, listings.count(), cleaned.count(), clean, train, dropped_label=dropped)
+    dropped = {"without features dropped": raw_n - listings.count()} if only_with_features else {}
+    base.print_report(raw_n, dropped, cleaned.count(), clean, train)
     print(f"written to {args.out}/:")
     print("  listings_clean/  train/              Parquet, for pandas / Spark")
     if readable:

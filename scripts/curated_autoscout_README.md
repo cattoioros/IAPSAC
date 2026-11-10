@@ -6,7 +6,8 @@ as the Autovit data in `data/curated/`. `scripts/curated_data_README.md` explain
 column and flag; this file only covers what is different. Everything in this folder is
 regenerated (overwritten) on each run, and `data/` is git-ignored.
 
-**Only listings with an equipment list (`features`) are kept.** In the first scrape that was
+**Only listings with an equipment list (`features`) are kept**, as for Autovit (the switch is
+`KEEP_ONLY_WITH_FEATURES` in `scripts/curate_cars.py`). In the first scrape that was
 about 0.3% of the listings, almost all from the start of the scrape, so they are not a random
 sample of the market (many classics, microcars, vans and Porsches; few BMWs and Toyotas).
 

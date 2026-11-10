@@ -3,8 +3,8 @@ Unite the curated Autovit data (data/curated) and AutoScout24 data (data/curated
 one dataset, data/curated_merged/, in the same layout. Run curate_cars.py and curate_autoscout.py
 first. The `source` column tells the rows apart.
 
-On top of a plain union it:
-  - keeps only cars with an equipment list (the AutoScout data already has only those)
+Both inputs already contain only cars with an equipment list (KEEP_ONLY_WITH_FEATURES in
+curate_cars.py), so no car is dropped here. On top of a plain union it:
   - reduces body types to categories both sites use the same way
   - renames AutoScout's equipment options to Autovit's names, using scripts/feature_name_map.csv
   - writes feature_counts.csv: how many cars from each site have each option
@@ -26,7 +26,6 @@ from pyspark.sql import functions as F
 import curate_cars as base
 from curate_cars import as_map, with_columns
 
-KEEP_ONLY_WITH_FEATURES = True
 AUTOSCOUT = "AutoScout24"            # value of `source` for AutoScout rows
 
 # AutoScout uses 'Berlina' and 'Autoturism mic' interchangeably for the same cars (a Golf is listed
@@ -90,15 +89,15 @@ def write_feature_counts(rows: list, sources: list, path: Path) -> None:
         writer.writerows(rows)
 
 
-def print_report(inputs: dict, merged: DataFrame, sources: list, counts: list) -> None:
+def print_report(merged: DataFrame, sources: list, counts: list) -> None:
     def per_source(df: DataFrame) -> dict:
         return {r["source"]: r["count"] for r in df.groupBy("source").count().collect()}
 
     # train has no `source` column (same layout as the other train tables), so count it here
-    kept, in_train = per_source(merged), per_source(merged.filter(F.size("train_exclude_reasons") == 0))
+    listings, in_train = per_source(merged), per_source(merged.filter(F.size("train_exclude_reasons") == 0))
     print("\n================= MERGE REPORT =================")
     print(f"{'':<26}" + "".join(f"{s:>14}" for s in sources) + f"{'total':>10}")
-    for label, values in [("curated listings", inputs), ("merged (with features)", kept), ("train", in_train)]:
+    for label, values in [("listings", listings), ("train", in_train)]:
         print(f"{label:<26}" + "".join(f"{values.get(s, 0):>14}" for s in sources) + f"{sum(values.values()):>10}")
     both = sum(1 for row in counts if row[-1] == "yes")
     print(f"\noptions: {len(counts)} distinct, {both} appear on both sites (see feature_counts.csv)")
@@ -120,16 +119,12 @@ def main() -> None:
     spark.sparkContext.setLogLevel("WARN")
 
     parts = [read_curated(spark, base.REPO_ROOT / folder, script) for folder, script in INPUTS]
-    union = parts[0].unionByName(parts[1])
-    inputs = {r["source"]: r["count"] for r in union.groupBy("source").count().collect()}
-    sources = sorted(inputs)
-
-    merged = (union
+    merged = (parts[0].unionByName(parts[1])
               .transform(harmonise_body_types)
-              .transform(lambda df: rename_autoscout_features(df, load_feature_map(FEATURE_MAP_FILE))))
-    if KEEP_ONLY_WITH_FEATURES:
-        merged = merged.filter(F.col("features").isNotNull())
-    merged = merged.select(*base.CLEAN_COLUMNS).cache()
+              .transform(lambda df: rename_autoscout_features(df, load_feature_map(FEATURE_MAP_FILE)))
+              .select(*base.CLEAN_COLUMNS)
+              .cache())
+    sources = sorted(r["source"] for r in merged.select("source").distinct().collect())
     train = base.build_training_set(merged)
 
     out = Path(args.out)
@@ -140,7 +135,7 @@ def main() -> None:
     write_feature_counts(counts, sources, out / "feature_counts.csv")
     shutil.copyfile(Path(__file__).with_name("curated_merged_README.md"), out / "README.md")
 
-    print_report(inputs, merged, sources, counts)
+    print_report(merged, sources, counts)
     print(f"written to {out}/:")
     print("  listings_clean/  train/              Parquet, for pandas / Spark")
     print("  listings_clean.json  train.json      open in an editor")
