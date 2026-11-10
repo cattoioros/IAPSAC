@@ -62,7 +62,7 @@ MONTHS = {"ianuarie": 1, "februarie": 2, "martie": 3, "aprilie": 4, "mai": 5, "i
 
 MAKE_ALIASES = {"SsangYong": "KGM"}  # same company, rebranded in 2023
 MERCEDES_CHASSIS = {"W124": "E", "W126": "S", "W140": "S", "W201": "190", "123 C": "W123"}
-BODY_SUFFIX = r"\s+(4-door Coupe|Limuzina|Avant|Allroad|Allstreet|Sportback|Cabrio|Coup[eé]|3-portiere|Crossback)$"
+BODY_SUFFIX = r"(?i)\s+(4-door Coupe|Limuzina|Avant|Variant|Allroad|Allstreet|Sportback|Cabrio|Coup[eé]|3-portiere|Crossback)$"
 
 # Only used when fuel_type is missing; first match wins.
 FUEL_FROM_VERSION = [
@@ -291,6 +291,9 @@ def parse_generation(df: DataFrame) -> DataFrame:
     })
 
 
+WHEEL_FEATURE = r'^Jante (aliaj \d+|aluminiu \(\d+"\))$'   # Autovit 'Jante aliaj 18', AutoScout 'Jante aluminiu (18")'
+
+
 def clean_features(df: DataFrame) -> DataFrame:
     """Drop junk entries ('', 'true', 'false'). An empty list means the equipment section was not
     scraped, not that the car has no equipment, so it becomes null."""
@@ -298,8 +301,8 @@ def clean_features(df: DataFrame) -> DataFrame:
         "features", lambda x: (F.trim(x) != "") & ~F.lower(x).isin("true", "false"))))
     features = F.when(F.size(kept) > 0, kept)
     wheel_sizes = F.transform(
-        F.filter(features, lambda x: x.rlike(r"^Jante aliaj \d+$")),
-        lambda x: F.regexp_extract(x, r"(\d+)$", 1).cast("int"))
+        F.filter(features, lambda x: x.rlike(WHEEL_FEATURE)),
+        lambda x: F.regexp_extract(x, r"(\d+)", 1).cast("int"))
     return with_columns(df, {
         "features": features,
         "feature_count": F.when(features.isNotNull(), F.size(features)),
@@ -311,10 +314,13 @@ def clean_features(df: DataFrame) -> DataFrame:
 def model_family(make: Column, model: Column) -> Column:
     """Coarser model name that groups variants:
     'A4 Avant' -> 'A4', 'GLE Coupe' -> 'GLE', 'A 180' -> 'A' (Mercedes), 'W124' -> 'E',
-    'Seria RX' -> 'RX' (Lexus), 'Grandland X' -> 'Grandland' (Opel)."""
+    'Seria RX' / 'RX 450h' -> 'RX' (Lexus), 'Grandland X' -> 'Grandland' (Opel),
+    'T6.1 Transporter' -> 'Transporter' (VW). Also used by curate_autoscout.py."""
     fam = F.regexp_replace(model, BODY_SUFFIX, "")
-    fam = F.when(make == "Lexus", F.regexp_replace(fam, r"^Seria\s+", "")).otherwise(fam)
+    lexus = F.regexp_extract(fam, r"^(?:Seria\s+)?([A-Z]{2,3})\b", 1)
+    fam = F.when((make == "Lexus") & (lexus != ""), lexus).otherwise(fam)
     fam = F.when(make == "Opel", F.regexp_replace(fam, r"\s+X$", "")).otherwise(fam)
+    fam = F.when(make == "Volkswagen", F.regexp_replace(fam, r"^T\d(\.\d)?\s+", "")).otherwise(fam)
     mb_class = F.regexp_extract(fam, r"^(AMG GT|[A-Z]{1,3})(?:\s|\+|$)", 1)
     mercedes = F.coalesce(as_map(MERCEDES_CHASSIS)[fam], F.when(mb_class != "", mb_class), fam)
     return F.when(make == "Mercedes-Benz", mercedes).otherwise(fam)
@@ -428,7 +434,8 @@ def write_readable_copies(df: DataFrame, path_stem: str) -> None:
 # ---------------------------------------------------------------------------
 # Report
 # ---------------------------------------------------------------------------
-def print_report(raw_n: int, listings_n: int, deduped_input_n: int, clean: DataFrame, train: DataFrame) -> None:
+def print_report(raw_n: int, listings_n: int, deduped_input_n: int, clean: DataFrame, train: DataFrame,
+                 dropped_label: str = "empty scrapes dropped") -> None:
     clean_n, train_n = clean.count(), train.count()
 
     def counts(column: str) -> list:
@@ -437,7 +444,7 @@ def print_report(raw_n: int, listings_n: int, deduped_input_n: int, clean: DataF
 
     print("\n================ CURATION REPORT ================")
     print(f"raw rows                     {raw_n:>6}")
-    print(f"empty scrapes dropped        {raw_n - listings_n:>6}")
+    print(f"{dropped_label:<29}{raw_n - listings_n:>6}")
     print(f"duplicate listings dropped   {deduped_input_n - clean_n:>6}")
     print(f"listings_clean rows          {clean_n:>6}")
     print(f"train rows                   {train_n:>6}")
