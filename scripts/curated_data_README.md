@@ -49,7 +49,7 @@ it prints a report with row counts and how many rows each fix touched.
 
 | File | Contents |
 |---|---|
-| `listings_clean.*` | **The curated dataset**: every listing from `cars.json`, fixed, minus empty scrapes and duplicates |
+| `listings_clean.*` | **The curated dataset**: every listing from `cars.json` that has an equipment list, fixed, minus duplicates |
 | `train.*` | The subset used to train the price model, with model-ready columns |
 
 Each table comes in three formats:
@@ -61,7 +61,7 @@ Each table comes in three formats:
 
 ## What was done to the data
 
-- **Dropped:** failed scrapes (no data besides the id) and duplicate listings of the same car (the most recently seen one is kept).
+- **Dropped:** failed scrapes (no data besides the id), listings without an equipment list, and duplicate listings of the same car (the most recently seen one is kept). Equipment affects the price, and a missing list can't be told apart from a car with no equipment. To keep those listings, set `KEEP_ONLY_WITH_FEATURES = False` at the top of `scripts/curate_cars.py`; this also applies to the AutoScout24 script.
 - **Fixed:** values the scraper put in the wrong column. It reads the page's top details by position, so a missing detail shifts the rest. For electric cars, horsepower and range are moved to the right columns.
 - **Standardised:** categories translated to English (`Benzina` → `petrol`, `Automata` → `automatic`), dates as `YYYY-MM-DD`, `SsangYong` → `KGM`.
 - **Recorded:** every change is listed in the row's `dq_flags`.
@@ -77,7 +77,7 @@ Each table comes in three formats:
 | `age_years` | Age from `year` (mid-year build assumed). Not from the registration date, which for imports is often years later. |
 | `km_per_year`, `is_new` | Mileage per year of age; `is_new` = 100 km or less (dealer stock) |
 | `ev_range_km` | Electric range; only for electric cars |
-| `features_known` | `false` = the listing had no equipment list (unknown, not "no equipment") |
+| `features_known` | `false` = the listing had no equipment list (unknown, not "no equipment"). Always `true` unless `KEEP_ONLY_WITH_FEATURES` is turned off. |
 | `log_price` | Natural log of `price_euro`, so a model weighs errors in % rather than euros. Euros = `exp(log_price)`. |
 
 ## What `dq_flags` can contain
@@ -95,7 +95,7 @@ Each table comes in three formats:
 | `reg_date_two_digit_year` | Year like `14` read as 2014 |
 | `reg_date_is_jan1_placeholder` | Registration date is 1 January: probably only the year was known |
 | `implausible_km_per_year` | Mileage too high for the car's age |
-| `features_missing` | No equipment list |
+| `features_missing` | No equipment list (only appears if `KEEP_ONLY_WITH_FEATURES` is turned off) |
 | `unrecognised_*`, `reg_date_unparseable_or_future`, `year_out_of_range` | Safety nets for new scrapes; if they appear, the site changed and the script needs a new rule |
 
 ## Who is left out of `train`

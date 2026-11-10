@@ -33,7 +33,9 @@ If one of the curated folders is missing, the merge script says which script to 
 
 ## What the merge changes
 
-- **Only cars with an equipment list.** Autovit listings without one are dropped (the AutoScout data already has only cars with one).
+Both curated datasets already contain only cars with an equipment list (each curation script
+drops the others), so the merge keeps every car. It changes two things:
+
 - **Body types.** AutoScout does not separate saloons, hatchbacks and small cars consistently: the same model appears under both of its categories. So `sedan`, `compact`, `city_car` and `small_car` all become `sedan_hatchback`. The other types (`suv`, `estate`, `mpv`, `coupe`, `convertible`, `commercial`, `other`) are unchanged.
 - **Equipment names.** AutoScout's option names are translated to Autovit's using `scripts/feature_name_map.csv`, e.g. `Tempomat` → `Pilot automat` and `Jante aluminiu (18")` → `Jante aliaj 18`. About two thirds of AutoScout's options have an Autovit equivalent; the rest keep their AutoScout names. Rows marked "approximate" in the CSV are close but not exact equivalents. Edit the CSV to add or change translations.
 
