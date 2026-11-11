@@ -6,3 +6,9 @@ state.json
 *.json
 *.log
 data/
+# AutoScout24 scraper: local data and exports stay out of git; test fixtures and the docs sample go in
+autoscout24_scraper/data/
+autoscout24_scraper/export/
+.pytest_cache/
+!autoscout24_scraper/tests/fixtures/*.json
+!docs/sample/*.json

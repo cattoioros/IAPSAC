@@ -1,0 +1,1126 @@
+{
+ "pageProps": {
+  "listingDetails": {
+   "id": "87a62133-41fd-4d91-a49a-6ccb1913b813",
+   "title": "Fiat Grande Panda",
+   "searchResultType": "Organic",
+   "isDeliverable": false,
+   "ratings": {
+    "customerCulture": "it-IT",
+    "urlName": "https://www.autoscout24.ro/dealerinfo/l-c-a-srl-savona-sv/ratings",
+    "ratingsCount": 3,
+    "ratingsStars": 3,
+    "ratingsAverage": "2,7",
+    "recommendPercentage": 33,
+    "ratingsByCategory": [
+     {
+      "stars": 3,
+      "label": "Gesamteindruck"
+     },
+     {
+      "stars": 4,
+      "label": "Erreichbarkeit"
+     },
+     {
+      "stars": 2.5,
+      "label": "Zuverlässigkeit"
+     },
+     {
+      "stars": 2.5,
+      "label": "Angebotsbeschreibung"
+     },
+     {
+      "stars": 2.5,
+      "label": "Beratung"
+     }
+    ]
+   },
+   "images": [
+    "https://prod.pictures.autoscout24.net/listing-images/87a62133-41fd-4d91-a49a-6ccb1913b813_51461347-6783-45ad-8dde-d2b40143462c.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/87a62133-41fd-4d91-a49a-6ccb1913b813_5380ec53-d26e-446e-98da-6b03f02c55c6.jpg/1280x960.webp"
+   ],
+   "headerImage": "https://prod.pictures.autoscout24.net/listing-images/87a62133-41fd-4d91-a49a-6ccb1913b813_51461347-6783-45ad-8dde-d2b40143462c.jpg/120x90.webp",
+   "youtubeLink": null,
+   "twinnerUrl": null,
+   "isCoverImagePlaceholder": false,
+   "coverImageAttractiveness": 0.2983898281222991,
+   "hasThreeSixtyContent": false,
+   "vehicleReport": {
+    "carfax": {
+     "carfaxMode": "FreeCarFax",
+     "reportUrlEn": "https://www.carfax.eu/it/partner/autoscout24-italy/83b1a4d2206857db26014d14e8eb8e4e62fdcc8f2a4227645a3977e4d46698c0|https://www.carfax.eu/it/partner/autoscout24-italy/3c1a000e45bacb881eeb18eb67ec176ceac831448cf87a9cc7b93cbf2b150904",
+     "reportUrlFr": "https://www.carfax.eu/it/partner/autoscout24-italy/5a2c82c22cf55b5c1e0abde629c989f54cdce9d2a4d4ec777590e0f5d3534588|https://www.carfax.eu/it/partner/autoscout24-italy/76d010b92e2668fbd9face049ebd1b94ebf109a30b8ee21d8e1af76d19f401c3"
+    }
+   },
+   "partnerIntegrations": [
+    {
+     "partnerName": "Carfax",
+     "partnerType": "VehicleHistory",
+     "partnerUrl": "https://www.carfax.eu/it/partner/autoscout24-italy/83b1a4d2206857db26014d14e8eb8e4e62fdcc8f2a4227645a3977e4d46698c0",
+     "partnerUrlStage": "https://www.carfax.eu/it/partner/autoscout24-italy/3c1a000e45bacb881eeb18eb67ec176ceac831448cf87a9cc7b93cbf2b150904"
+    }
+   ],
+   "threeSixty": null,
+   "prices": {
+    "isFinalPrice": false,
+    "public": {
+     "price": "€ 4.000",
+     "priceRaw": 4000,
+     "taxDeductible": false,
+     "negotiable": false,
+     "onRequestOnly": false,
+     "netPrice": null,
+     "netPriceRaw": null,
+     "vatRate": null,
+     "category": null,
+     "median": null,
+     "evaluationRanges": null
+    },
+    "dealer": {
+     "price": "€ 4.000",
+     "priceRaw": 4000,
+     "taxDeductible": false,
+     "negotiable": false,
+     "onRequestOnly": false,
+     "netPrice": null,
+     "netPriceRaw": null,
+     "vatRate": null,
+     "category": null,
+     "median": null,
+     "evaluationRanges": null
+    },
+    "suggestedRetail": null,
+    "popupUrl": "https://www.autoscout24.com/priceevaluation/price-label-explanation-page/87a62133-41fd-4d91-a49a-6ccb1913b813?culture=ro-RO",
+    "error": null
+   },
+   "superDeal": null,
+   "price": {
+    "priceFormatted": "€ 4.000",
+    "isVatLabelLegallyRequired": false,
+    "isConditionalPrice": true
+   },
+   "availability": {
+    "availabilityType": 3,
+    "rawFromDate": null,
+    "fromDate": null,
+    "inDays": 120
+   },
+   "financingFlags": {
+    "showStageFinancingAmvLegendSpain": false
+   },
+   "vehicle": {
+    "licensePlate": null,
+    "carpassMileageUrl": null,
+    "makeId": 28,
+    "modelOrModelLineId": 76901,
+    "make": "Fiat",
+    "model": "Grande Panda",
+    "modelGroup": "Grande Panda",
+    "variant": null,
+    "modelId": 76901,
+    "modelGroupIds": [
+     203128
+    ],
+    "modelGenerationId": null,
+    "modelVariantId": null,
+    "motorTypeId": null,
+    "motorTypeName": null,
+    "trimLineId": null,
+    "modelVersionInput": "Grande Panda 1.2 hybrid La Prima 110cv edct",
+    "modelVersionCustom": null,
+    "type": "Car",
+    "hsnTsn": null,
+    "mileageInKmRaw": 1,
+    "mileageInKm": "1 km",
+    "firstRegistrationDateRaw": null,
+    "firstRegistrationDate": null,
+    "bodyType": "Off-road/4x4/Pick-up",
+    "numberOfSeats": 5,
+    "numberOfDoors": 5,
+    "bodyColor": "Bronz",
+    "bodyColorRaw": "Bronze",
+    "paintType": "Altele",
+    "bodyColorOriginal": null,
+    "engineHours": "",
+    "fuelDeliveryType": "",
+    "engineCoolingSystem": "",
+    "slideOutCount": null,
+    "chassisManufacturerName": "",
+    "exteriorMaterial": "",
+    "extendedLength": "",
+    "flooringMaterial": "",
+    "fridgePowerType": "",
+    "fridgeCapacity": "",
+    "waterTankCapacity": "",
+    "wasteTankCapacity": "",
+    "engineManufacturerName": "",
+    "axleSpread": "",
+    "brakeType": "",
+    "cabinAxleDistance": "",
+    "differentialRatio": "",
+    "frameType": "",
+    "rearAxleWeightRating": "",
+    "frontAxleWeightRating": "",
+    "trackDimension": "",
+    "skiStanceWidth": "",
+    "fuelCapacity": "",
+    "headCount": null,
+    "hullMaterial": null,
+    "steeringType": null,
+    "auxiliaryPower": null,
+    "engineMountingType": null,
+    "engineCount": null,
+    "isCabinClean": false,
+    "upholstery": "Stofă",
+    "upholsteryColor": "Negru",
+    "marketingDescription": "",
+    "controlModuleName": "",
+    "powerInKw": "81 kW",
+    "powerInHp": "110 CP",
+    "rawPowerInKw": 81,
+    "rawPowerInHp": 110,
+    "transmissionType": "Automată",
+    "gears": 6,
+    "cylinders": 3,
+    "driveTrain": "Faţă",
+    "displacementInCCM": "1.199 cm³",
+    "rawDisplacementInCCM": 1199,
+    "cylinderCapacity": "1.199 cm³",
+    "rawCylinderCapacity": 1199,
+    "weight": null,
+    "hasParticleFilter": false,
+    "fuelCategory": {
+     "raw": "2",
+     "formatted": "Electric/Benzină"
+    },
+    "batteryOwnershipType": {
+     "raw": null,
+     "formatted": null
+    },
+    "batteryChargingTime": {
+     "raw": null,
+     "formatted": null
+    },
+    "electricRangeWithFallback": {
+     "raw": null,
+     "formatted": null
+    },
+    "electricRangeCity": {
+     "raw": null,
+     "formatted": null
+    },
+    "primaryFuel": {
+     "raw": null,
+     "formatted": null
+    },
+    "additionalFuel": [
+     {
+      "raw": 12,
+      "formatted": "Electricity",
+      "consumptionCombined": {
+       "raw": null,
+       "formatted": "- (kWh/100 km)",
+       "isFallback": false
+      },
+      "co2emissionInGramPerKmWithFallback": {
+       "raw": null,
+       "formatted": null,
+       "isFallback": null
+      }
+     }
+    ],
+    "fuelConsumptionCombined": {
+     "raw": null,
+     "formatted": "- (l/100 km)",
+     "isFallback": false
+    },
+    "fuelConsumptionUrban": {
+     "raw": null,
+     "formatted": null
+    },
+    "fuelConsumptionExtraUrban": {
+     "raw": null,
+     "formatted": null
+    },
+    "co2emissionInGramPerKmWithFallback": {
+     "raw": null,
+     "formatted": "- (g/km)",
+     "isFallback": false
+    },
+    "wltp": null,
+    "allFuelTypes": [],
+    "equipment": {
+     "comfortAndConvenience": [
+      {
+       "id": "Asistent de parcare cameră video",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "banchetă spate rabatabilă",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Cotiera",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Geamuri electrice",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Geamuri fumurii",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Inchidere fara cheie",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Oglinzi laterale electrice",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Scaun copilot pliabil",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Scaune acţionate electric",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "senzor parcare",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Senzori de parcare spate",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Tempomat",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Volan multifuncţional",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      }
+     ],
+     "entertainmentAndMedia": [
+      {
+       "id": "Android Auto",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "Apple CarPlay",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "Computer de bord",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "Încărcare cu inducție pentru smartphone-uri",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "MP3",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "Radio",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "Radio digital",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "Sistem audio",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      }
+     ],
+     "extras": [
+      {
+       "id": "Frână electronică parcare",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Iluminat ambiental",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Jante aluminiu",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Oglindă interioară cu diminuare automată a luminii",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Spoiler",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      }
+     ],
+     "safetyAndSecurity": [
+      {
+       "id": "Airbag copilot",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Apel de urgenta",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Asistent banda de rulare",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Asistenta la franarea de urgenta",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Faruri LED",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Lumini de rulare pe timp de zi",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Monitorizare presiune anvelope",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Sistem Isofix de prindere a scaunului copil",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Sistem recunoastere semne de circulatie",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      }
+     ]
+    },
+    "environmentPkwEnVKV": null,
+    "environmentEuDirective": {
+     "description": null,
+     "formatted": "Euro 6e",
+     "label": "EURO6e",
+     "isFallback": false,
+     "co2EfficiencyClass": "EURO6e"
+    },
+    "environmentBImSchV35": null,
+    "originalMarket": null,
+    "legalCategories": [
+     "Vehicul nou"
+    ],
+    "legalCategoriesRaw": [
+     "NewVehicle"
+    ],
+    "hadAccident": null,
+    "damageConditions": [],
+    "newInspection": false,
+    "lastBeltServiceDate": null,
+    "lastTechnicalServiceDate": null,
+    "hasFullServiceHistory": false,
+    "nonSmoking": false,
+    "noOfPreviousOwners": null,
+    "nextVehicleSafetyInspection": null,
+    "isRental": false,
+    "numberOfBeds": null,
+    "numberOfAxles": null,
+    "wheelBase": null,
+    "totalHeight": null,
+    "totalWidth": null,
+    "totalLength": null,
+    "maximumTowingWeight": null,
+    "grossVehicleWeight": null,
+    "payload": null,
+    "loadWidth": null,
+    "loadHeight": null,
+    "loadLength": null,
+    "loadVolume": null,
+    "productionYear": null,
+    "hasCarRegistration": false,
+    "offerType": "N",
+    "newDriverSuitable": null,
+    "rawData": {
+     "totalLength": null,
+     "engineHours": null,
+     "usageState": "N",
+     "productionDate": null,
+     "legalCategories": [
+      {
+       "formatted": "Vehicul nou",
+       "raw": "NewVehicle"
+      }
+     ],
+     "classification": {
+      "type": "Car",
+      "modelYear": null,
+      "make": {
+       "raw": 28,
+       "formatted": "Fiat"
+      },
+      "model": {
+       "raw": 76901,
+       "formatted": "Grande Panda"
+      },
+      "modelGroups": [
+       {
+        "raw": 203128,
+        "formatted": "Grande Panda"
+       }
+      ],
+      "modelGeneration": null,
+      "modelVariant": null,
+      "motorType": null,
+      "trimLine": null,
+      "modelVersionInput": "Grande Panda 1.2 hybrid La Prima 110cv edct",
+      "modelVersionCustom": null,
+      "germanHsnTsn": null
+     },
+     "fuels": {
+      "isPluginHybrid": {
+       "raw": false
+      },
+      "primary": {
+       "type": null,
+       "consumption": {
+        "combinedWithFallback": {
+         "raw": null,
+         "formatted": "- (l/100 km)",
+         "isFallback": false
+        },
+        "urban": null,
+        "extraUrban": null
+       },
+       "co2emissionInGramPerKmWithFallback": {
+        "raw": null,
+        "formatted": "- (g/km)",
+        "isFallback": false
+       }
+      },
+      "additional": [
+       {
+        "type": {
+         "raw": 12,
+         "formatted": "Electricity"
+        },
+        "consumption": {
+         "combinedWithFallback": {
+          "raw": null,
+          "formatted": "- (kWh/100 km)",
+          "isFallback": false
+         }
+        },
+        "co2emissionInGramPerKmWithFallback": null
+       }
+      ],
+      "fuelCategory": {
+       "raw": "2",
+       "formatted": "Electric/Benzină"
+      },
+      "wltp": null,
+      "electricRangeWithFallback": null,
+      "electricRangeCity": null,
+      "allFuelTypes": [],
+      "battery": null
+     },
+     "engine": {
+      "engineDisplacementInCCM": {
+       "raw": 1199,
+       "formatted": "1.199 cm³"
+      },
+      "power": {
+       "kw": {
+        "raw": 81,
+        "formatted": "81 kW"
+       },
+       "hp": {
+        "raw": 110,
+        "formatted": "110 CP"
+       }
+      },
+      "transmissionType": {
+       "raw": "Automatic",
+       "formatted": "Automată"
+      },
+      "numberOfCylinders": 3,
+      "cylinderCapacity": {
+       "raw": 1199,
+       "unit": "ccm",
+       "formatted": "1.199 cm³"
+      },
+      "numberOfGears": 6,
+      "driveTrain": {
+       "formatted": "Faţă"
+      }
+     },
+     "condition": {
+      "firstRegistrationDate": null,
+      "mileageInKm": {
+       "raw": 1,
+       "formatted": "1 km"
+      },
+      "numberOfPreviousOwnersExtended": {
+       "raw": null,
+       "formatted": "- (Proprietar ant.)"
+      },
+      "damage": {
+       "isCurrentlyDamaged": null,
+       "isRoadworthy": null,
+       "accidentFree": null,
+       "hasRepairedDamages": null,
+       "damageConditions": []
+      },
+      "nonSmoking": false,
+      "newInspection": false,
+      "isCabinClean": null,
+      "carpassMileageUrl": null
+     },
+     "bodyType": {
+      "formatted": "Off-road/4x4/Pick-up",
+      "raw": "Offroad"
+     },
+     "bodyColor": {
+      "raw": "Bronze",
+      "formatted": "Bronz"
+     },
+     "numberOfBeds": {
+      "raw": null,
+      "formatted": "- (Număr locuri de dormit)"
+     },
+     "numberOfAxles": {
+      "raw": null,
+      "formatted": "- (Număr axe)"
+     },
+     "grossVehicleWeight": null,
+     "wheelBase": null,
+     "costModel": null,
+     "numberOfDoors": 5,
+     "paintType": {
+      "formatted": "Altele"
+     },
+     "bodyColorOriginal": null,
+     "interior": {
+      "numberOfSeats": 5,
+      "upholstery": {
+       "formatted": "Stofă"
+      },
+      "upholsteryColor": {
+       "formatted": "Negru"
+      }
+     },
+     "emptyWeight": null,
+     "totalHeight": null,
+     "totalWidth": null,
+     "maximumTowingWeight": null,
+     "payload": null,
+     "loadWidth": null,
+     "loadHeight": null,
+     "loadLength": null,
+     "loadVolume": null,
+     "hasCarRegistration": {
+      "raw": false
+     },
+     "environment": {
+      "particulateFilter": false,
+      "environmentLabelsWithFallback": [
+       {
+        "norm": "EU_Directive_70_220_EEC_LDV",
+        "description": null,
+        "formatted": "Euro 6e",
+        "label": "EURO6e",
+        "isFallback": false
+       }
+      ]
+     },
+     "equipment": {
+      "as24": [
+       {
+        "id": {
+         "raw": 130,
+         "formatted": "Asistent de parcare cameră video"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 21,
+         "formatted": "banchetă spate rabatabilă"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 134,
+         "formatted": "Cotiera"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 13,
+         "formatted": "Geamuri electrice"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 54,
+         "formatted": "Geamuri fumurii"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 153,
+         "formatted": "Inchidere fara cheie"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 121,
+         "formatted": "Oglinzi laterale electrice"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 229,
+         "formatted": "Scaun copilot pliabil"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 16,
+         "formatted": "Scaune acţionate electric"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 40,
+         "formatted": "senzor parcare"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 129,
+         "formatted": "Senzori de parcare spate"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 38,
+         "formatted": "Tempomat"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 114,
+         "formatted": "Volan multifuncţional"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 222,
+         "formatted": "Android Auto"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 221,
+         "formatted": "Apple CarPlay"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 41,
+         "formatted": "Computer de bord"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 223,
+         "formatted": "Încărcare cu inducție pentru smartphone-uri"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 43,
+         "formatted": "MP3"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 10,
+         "formatted": "Radio"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 138,
+         "formatted": "Radio digital"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 155,
+         "formatted": "Sistem audio"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 240,
+         "formatted": "Frână electronică parcare"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 219,
+         "formatted": "Iluminat ambiental"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 15,
+         "formatted": "Jante aluminiu"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 225,
+         "formatted": "Oglindă interioară cu diminuare automată a luminii"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 238,
+         "formatted": "Spoiler"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 3,
+         "formatted": "Airbag copilot"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 149,
+         "formatted": "Apel de urgenta"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 157,
+         "formatted": "Asistent banda de rulare"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 148,
+         "formatted": "Asistenta la franarea de urgenta"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 140,
+         "formatted": "Faruri LED"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 115,
+         "formatted": "Lumini de rulare pe timp de zi"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 150,
+         "formatted": "Monitorizare presiune anvelope"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 125,
+         "formatted": "Sistem Isofix de prindere a scaunului copil"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 162,
+         "formatted": "Sistem recunoastere semne de circulatie"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       }
+      ]
+     },
+     "alloyWheelInches": null,
+     "originalMarket": null,
+     "maintenance": {
+      "nextVehicleSafetyInspection": null,
+      "lastBeltServiceDate": null,
+      "hasFullServiceHistory": {
+       "raw": false
+      },
+      "lastTechnicalServiceDate": null
+     },
+     "newDriverSuitable": null
+    }
+   },
+   "identifier": {
+    "offerReference": "7",
+    "legacyId": null
+   },
+   "seals": null,
+   "location": {
+    "countryCode": "IT",
+    "zip": "17100",
+    "city": "Savona - SV"
+   },
+   "webPage": "https://www.autoscout24.ro/oferte/fiat-grande-panda-grande-panda-1-2-hybrid-la-prima-110cv-edct-electric-benzina-bronz-cat_ma28mo76901-87a62133-41fd-4d91-a49a-6ccb1913b813",
+   "status": "Active",
+   "leasingDetails": null,
+   "warranty": "12 luni",
+   "warrantyExists": true,
+   "ocsInfo": {
+    "__typename": "NotOcs"
+   },
+   "financingAndInsurance": null,
+   "trackingParams": {
+    "classified_recency": "regular",
+    "classified_makeId": 28,
+    "classified_makeTxt": "fiat",
+    "classified_modelID": 76901,
+    "classified_modelGroupID": 203128,
+    "classified_modelTxt": "grande panda",
+    "classified_mileage": 1,
+    "classified_power": 81,
+    "classified_price": 4000,
+    "classified_fueltype": "2",
+    "classified_transmission": "a",
+    "classified_equipment": "130,21,134,13,54,153,121,229,16,40,129,38,114,222,221,41,223,43,10,138,155,240,219,15,225,238,3,149,157,148,140,115,150,125,162",
+    "classified_offerType": "n",
+    "classified_doors": 5,
+    "classified_seats": 5,
+    "classified_customer_type": "d",
+    "classified_customerID": "63640746",
+    "classified_zipcode": "17100",
+    "classified_capacity": 1199,
+    "classified_bodyType": 4,
+    "classified_carSegment": "subcompact,offroad,suv",
+    "classified_country": "I",
+    "classified_emissionStandard": 10,
+    "classified_tier": "t50",
+    "classified_applied_tier": "t50",
+    "classified_images_threesixty": "standard",
+    "classified_dealerPackage": "active",
+    "classified_exclusiveOffer": "false",
+    "classified_leadsRange": "some",
+    "classified_imageContent": "no-placeholder|0.2983898281222991",
+    "classified_isSmyleEligible": "unknown",
+    "classified_ownershipModels": "tr"
+   },
+   "appliedAdTier": "T50",
+   "adTier": "T50",
+   "specialConditions": [],
+   "hasPremiumListingTreatment": true,
+   "adTargetingString": "{\"mia\":\"true\",\"leasing\":\"false\",\"seg\":\"subcompact,offroad,suv\",\"did\":\"63640746\",\"stmil\":\"1\",\"gear\":\"A\",\"make\":\"28\",\"stmak\":\"Fiat\",\"model\":\"76901\",\"stmod\":\"Grande Panda\",\"cost\":\"4000\",\"ad\":\"dealer\",\"vat\":\"0\",\"art\":\"4\",\"carby\":\"0\",\"fr\":\"new\",\"stccm\":\"1199\",\"buyonline\":\"false\",\"stkw\":\"81\",\"sthp\":\"110\",\"equi\":\"129,130,3,134,10,138,140,13,15,16,148,21,149,150,153,155,219,157,221,222,223,225,162,229,38,41,43,238,240,114,115,54,121,125,37,40\",\"miles\":\"1\",\"img\":\"https://prod.pictures.autoscout24.net/listing-images/87a62133-41fd-4d91-a49a-6ccb1913b813_51461347-6783-45ad-8dde-d2b40143462c.jpg/720x540.webp\",\"price\":\"1\",\"rnd\":\"33\",\"ECO\":\"YES\",\"fuel\":\"2\",\"kenteken\":\"false\",\"acc\":\"N\",\"hp\":\"5\",\"mgroupid\":\"203128\",\"type\":\"N\",\"atsd\":\"\",\"zip\":\"IT17100\",\"zip2\":\"17100\",\"articleType\":\"C\",\"tiered\":\"active\"}",
+   "statistics": {
+    "leadsRange": "Some"
+   },
+   "imgAltText": "Fiat Grande Panda Grande Panda 1.2 hybrid La Prima 110cv edct Bronz",
+   "createdTimestampWithOffset": "2026-10-05T15:16:18.802Z",
+   "vehicleType": "phev",
+   "searchTrackingParams": [
+    {
+     "key": "boost_level",
+     "value": "t50"
+    },
+    {
+     "key": "applied_boost_level",
+     "value": "t50"
+    },
+    {
+     "key": "relevance_adjustment",
+     "value": "organic"
+    },
+    {
+     "key": "boosting_product",
+     "value": "none"
+    }
+   ],
+   "articleType": "car",
+   "isNew": false
+  }
+ },
+ "slug": "fiat-grande-panda-grande-panda-1-2-hybrid-la-prima-110cv-edct-electric-benzina-bronz-cat_ma28mo76901-87a62133-41fd-4d91-a49a-6ccb1913b813"
+}

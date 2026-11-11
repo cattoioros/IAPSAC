@@ -1,0 +1,1263 @@
+{
+ "pageProps": {
+  "listingDetails": {
+   "id": "7a3345b0-442a-405e-bd99-8722495d1655",
+   "title": "Mazda 3",
+   "searchResultType": "Organic",
+   "isDeliverable": false,
+   "ratings": {
+    "customerCulture": "de-DE",
+    "urlName": "https://www.autoscout24.ro/dealerinfo/drivex/ratings",
+    "ratingsCount": 7,
+    "ratingsStars": 5,
+    "ratingsAverage": "4,9",
+    "recommendPercentage": 100,
+    "ratingsByCategory": [
+     {
+      "stars": 5,
+      "label": "Gesamteindruck"
+     },
+     {
+      "stars": 5,
+      "label": "Erreichbarkeit"
+     },
+     {
+      "stars": 5,
+      "label": "Zuverlässigkeit"
+     },
+     {
+      "stars": 5,
+      "label": "Angebotsbeschreibung"
+     },
+     {
+      "stars": 5,
+      "label": "Kaufprozess"
+     },
+     {
+      "stars": 5,
+      "label": "Beratung"
+     }
+    ]
+   },
+   "images": [
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_803cd840-0f96-4a55-ac31-fa9020fe79f8.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_86ee219f-f72a-440f-a22a-17217258710c.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_6003feee-0874-4e92-a408-5392abf8c9d4.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_4d2bd40c-990f-49f0-b537-da24b2ab9545.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_6631a3f2-69dc-42ef-9d36-9a295a2fef56.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_d29f8414-5f87-473e-aafa-8119beb7efb3.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_4243bd2d-8cad-4c4f-be85-12a371c09ee1.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_e37727ab-6f9f-423b-981d-b4efeaf50093.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_cd186cba-6c38-4d35-b9b9-3f5b1f4c6cbe.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_c532a4e2-51fe-48cc-aba1-b361f17b5d4e.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_35574d16-f8a9-4837-8177-3f7fd8b6225d.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_1bcb1c09-3e6a-4479-900d-1ea053f677a7.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_aee30dc3-8486-4ae5-a35a-2ba23029427b.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_ff0696b6-0741-492a-a547-cacad047e958.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_7386456d-9e10-4054-9b73-4b0ac4219137.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_f8133015-c9c1-426e-a062-a9f5268316f4.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_2e8d29ac-fda7-423d-ac9d-7a19a9b81db9.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_d9172fbc-1f9e-47af-934e-9c12b7ec608e.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_fba23799-8244-45e0-9c66-1170fab5fb7c.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_4e668eb9-e96a-4d74-886d-a3fa6fb08041.jpg/1280x960.webp",
+    "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_6bbe9ad9-a873-4244-bac5-d6a753e6a8f9.jpg/1280x960.webp"
+   ],
+   "headerImage": "https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_803cd840-0f96-4a55-ac31-fa9020fe79f8.jpg/120x90.webp",
+   "youtubeLink": null,
+   "twinnerUrl": null,
+   "isCoverImagePlaceholder": false,
+   "coverImageAttractiveness": 0.2444230415198435,
+   "hasThreeSixtyContent": false,
+   "vehicleReport": {
+    "carfax": {
+     "carfaxMode": "FreeCarFax",
+     "reportUrlEn": "https://www.carfax.eu/de/partner/autoscout24-germany/cbea0654ca828644d05590dd2874f893eb2f0dec60c73ed29a7d1e0dccefbe5d",
+     "reportUrlFr": "https://www.carfax.eu/de/partner/autoscout24-germany/17387fd65b42e5c463a7256f56fe4d79780ea30f8ec7687c80e84b8e88cbb045|https://www.carfax.eu/de/partner/autoscout24-germany/d5b60fd46b24919a60c1664f459c54f7cf09f786d1f31a03929a6a892a3de19c"
+    }
+   },
+   "partnerIntegrations": [
+    {
+     "partnerName": "Carfax",
+     "partnerType": "VehicleHistory",
+     "partnerUrl": "https://www.carfax.eu/de/partner/autoscout24-germany/cbea0654ca828644d05590dd2874f893eb2f0dec60c73ed29a7d1e0dccefbe5d",
+     "partnerUrlStage": null
+    }
+   ],
+   "threeSixty": null,
+   "prices": {
+    "isFinalPrice": false,
+    "public": {
+     "price": "€ 3.490",
+     "priceRaw": 3490,
+     "taxDeductible": false,
+     "negotiable": false,
+     "onRequestOnly": false,
+     "netPrice": null,
+     "netPriceRaw": null,
+     "vatRate": null,
+     "category": null,
+     "median": null,
+     "evaluationRanges": null
+    },
+    "dealer": {
+     "price": "€ 3.490",
+     "priceRaw": 3490,
+     "taxDeductible": false,
+     "negotiable": false,
+     "onRequestOnly": false,
+     "netPrice": null,
+     "netPriceRaw": null,
+     "vatRate": null,
+     "category": null,
+     "median": null,
+     "evaluationRanges": null
+    },
+    "suggestedRetail": null,
+    "popupUrl": "https://www.autoscout24.com/priceevaluation/price-label-explanation-page/7a3345b0-442a-405e-bd99-8722495d1655?culture=ro-RO",
+    "error": null
+   },
+   "superDeal": {
+    "oldPriceFormatted": "€ 3.999,-"
+   },
+   "price": {
+    "priceFormatted": "€ 3.490",
+    "isVatLabelLegallyRequired": false,
+    "isConditionalPrice": false
+   },
+   "availability": {
+    "availabilityType": 1,
+    "rawFromDate": null,
+    "fromDate": null,
+    "inDays": null
+   },
+   "financingFlags": {
+    "showStageFinancingAmvLegendSpain": false
+   },
+   "vehicle": {
+    "licensePlate": null,
+    "carpassMileageUrl": null,
+    "makeId": 46,
+    "modelOrModelLineId": 18388,
+    "make": "Mazda",
+    "model": "3",
+    "modelGroup": "Mazda3",
+    "variant": null,
+    "modelId": 18388,
+    "modelGroupIds": [
+     200954
+    ],
+    "modelGenerationId": 1743,
+    "modelVariantId": null,
+    "motorTypeId": 2608,
+    "motorTypeName": "SKYACTIV-D",
+    "trimLineId": 3376,
+    "modelVersionInput": "Exclusive-Line",
+    "modelVersionCustom": null,
+    "type": "Car",
+    "hsnTsn": "7118/AGM",
+    "mileageInKmRaw": 222158,
+    "mileageInKm": "222.158 km",
+    "firstRegistrationDateRaw": "2017-08-01",
+    "firstRegistrationDate": "08/2017",
+    "bodyType": "Autoturism mic",
+    "numberOfSeats": 5,
+    "numberOfDoors": 5,
+    "bodyColor": "Negru",
+    "bodyColorRaw": "Black",
+    "paintType": "Metalizat",
+    "bodyColorOriginal": "Onyxschwarz Metallic",
+    "engineHours": "",
+    "fuelDeliveryType": "",
+    "engineCoolingSystem": "",
+    "slideOutCount": null,
+    "chassisManufacturerName": "",
+    "exteriorMaterial": "",
+    "extendedLength": "",
+    "flooringMaterial": "",
+    "fridgePowerType": "",
+    "fridgeCapacity": "",
+    "waterTankCapacity": "",
+    "wasteTankCapacity": "",
+    "engineManufacturerName": "",
+    "axleSpread": "",
+    "brakeType": "",
+    "cabinAxleDistance": "",
+    "differentialRatio": "",
+    "frameType": "",
+    "rearAxleWeightRating": "",
+    "frontAxleWeightRating": "",
+    "trackDimension": "",
+    "skiStanceWidth": "",
+    "fuelCapacity": "",
+    "headCount": null,
+    "hullMaterial": null,
+    "steeringType": null,
+    "auxiliaryPower": null,
+    "engineMountingType": null,
+    "engineCount": null,
+    "isCabinClean": false,
+    "upholstery": "Parţial piele",
+    "upholsteryColor": null,
+    "marketingDescription": "",
+    "controlModuleName": "",
+    "powerInKw": "110 kW",
+    "powerInHp": "150 CP",
+    "rawPowerInKw": 110,
+    "rawPowerInHp": 150,
+    "transmissionType": "Manuală",
+    "gears": 6,
+    "cylinders": 4,
+    "driveTrain": "Faţă",
+    "displacementInCCM": "2.191 cm³",
+    "rawDisplacementInCCM": 2191,
+    "cylinderCapacity": "2.191 cm³",
+    "rawCylinderCapacity": 2191,
+    "weight": "1.481 kg",
+    "hasParticleFilter": false,
+    "fuelCategory": {
+     "raw": "D",
+     "formatted": "Motorina"
+    },
+    "batteryOwnershipType": {
+     "raw": null,
+     "formatted": null
+    },
+    "batteryChargingTime": {
+     "raw": null,
+     "formatted": null
+    },
+    "electricRangeWithFallback": {
+     "raw": null,
+     "formatted": null
+    },
+    "electricRangeCity": {
+     "raw": null,
+     "formatted": null
+    },
+    "primaryFuel": {
+     "raw": 7,
+     "formatted": "Diesel"
+    },
+    "additionalFuel": [],
+    "fuelConsumptionCombined": {
+     "raw": 4.1,
+     "formatted": "4,10 l/100 km (mixt)",
+     "isFallback": false
+    },
+    "fuelConsumptionUrban": {
+     "raw": null,
+     "formatted": null
+    },
+    "fuelConsumptionExtraUrban": {
+     "raw": null,
+     "formatted": null
+    },
+    "co2emissionInGramPerKmWithFallback": {
+     "raw": 107,
+     "formatted": "107 g/km (mixt)",
+     "isFallback": false
+    },
+    "wltp": null,
+    "allFuelTypes": [],
+    "equipment": {
+     "comfortAndConvenience": [
+      {
+       "id": "Aer condiţionat automat",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Asistentul pentru pornirea din rampă",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "banchetă spate rabatabilă",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Cotiera",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Funcţie start/stop",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Geamuri electrice",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Geamuri fumurii",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Încalzire scaune",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Oglinzi laterale electrice",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Senzor de ploaie",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "senzor parcare",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Senzori de parcare spate",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Sistem navigaţie",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Tempomat",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Volan incalzit",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      },
+      {
+       "id": "Volan multifuncţional",
+       "categoryName": "Confort",
+       "categoryId": "comfortAndConvenience"
+      }
+     ],
+     "entertainmentAndMedia": [
+      {
+       "id": "Bluetooth",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "MP3",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "Radio",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "Radio digital",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      },
+      {
+       "id": "USB",
+       "categoryName": "Divertisment /Media",
+       "categoryId": "entertainmentAndMedia"
+      }
+     ],
+     "extras": [
+      {
+       "id": "Anvelope all season",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Catalizator",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Comanda vocala",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Jante aluminiu",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Oglindă interioară cu diminuare automată a luminii",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Pachet sport",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      },
+      {
+       "id": "Spoiler",
+       "categoryName": "Opțiuni",
+       "categoryId": "extras"
+      }
+     ],
+     "safetyAndSecurity": [
+      {
+       "id": "ABS",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Airbag",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Airbag copilot",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "airbag pentru cap",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Airbag spate",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Airbag-uri laterale",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Asistenta la franarea de urgenta",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "ESP",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Faruri de ceaţă",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Faruri LED",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "închidere centralizată",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Lumini de rulare pe timp de zi",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Monitorizare presiune anvelope",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      },
+      {
+       "id": "Sistem Isofix de prindere a scaunului copil",
+       "categoryName": "Securitate",
+       "categoryId": "safetyAndSecurity"
+      }
+     ]
+    },
+    "environmentPkwEnVKV": null,
+    "environmentEuDirective": {
+     "description": null,
+     "formatted": "Euro 6",
+     "label": "EURO6",
+     "isFallback": false,
+     "co2EfficiencyClass": "EURO6"
+    },
+    "environmentBImSchV35": {
+     "description": null,
+     "formatted": "4 (Verde)",
+     "label": "Green",
+     "isFallback": false,
+     "co2EfficiencyClass": "Green"
+    },
+    "originalMarket": "Germania",
+    "legalCategories": [
+     "Vehicul second hand"
+    ],
+    "legalCategoriesRaw": [
+     "UsedVehicle"
+    ],
+    "hadAccident": false,
+    "damageConditions": [],
+    "newInspection": false,
+    "lastBeltServiceDate": null,
+    "lastTechnicalServiceDate": "02/2026",
+    "hasFullServiceHistory": true,
+    "nonSmoking": true,
+    "noOfPreviousOwners": 2,
+    "nextVehicleSafetyInspection": "01/2027",
+    "isRental": false,
+    "numberOfBeds": null,
+    "numberOfAxles": null,
+    "wheelBase": null,
+    "totalHeight": null,
+    "totalWidth": null,
+    "totalLength": null,
+    "maximumTowingWeight": null,
+    "grossVehicleWeight": null,
+    "payload": null,
+    "loadWidth": null,
+    "loadHeight": null,
+    "loadLength": null,
+    "loadVolume": null,
+    "productionYear": null,
+    "hasCarRegistration": false,
+    "offerType": "U",
+    "newDriverSuitable": null,
+    "rawData": {
+     "totalLength": null,
+     "engineHours": null,
+     "usageState": "U",
+     "productionDate": null,
+     "legalCategories": [
+      {
+       "formatted": "Vehicul second hand",
+       "raw": "UsedVehicle"
+      }
+     ],
+     "classification": {
+      "type": "Car",
+      "modelYear": null,
+      "make": {
+       "raw": 46,
+       "formatted": "Mazda"
+      },
+      "model": {
+       "raw": 18388,
+       "formatted": "3"
+      },
+      "modelGroups": [
+       {
+        "raw": 200954,
+        "formatted": "Mazda3"
+       }
+      ],
+      "modelGeneration": {
+       "raw": 1743,
+       "formatted": "BM"
+      },
+      "modelVariant": null,
+      "motorType": {
+       "raw": 2608,
+       "formatted": "SKYACTIV-D"
+      },
+      "trimLine": {
+       "raw": 3376
+      },
+      "modelVersionInput": "Exclusive-Line",
+      "modelVersionCustom": null,
+      "germanHsnTsn": {
+       "formatted": "7118/AGM"
+      }
+     },
+     "fuels": {
+      "isPluginHybrid": null,
+      "primary": {
+       "type": {
+        "raw": 7,
+        "formatted": "Diesel"
+       },
+       "consumption": {
+        "combinedWithFallback": {
+         "raw": 4.1,
+         "formatted": "4,10 l/100 km (mixt)",
+         "isFallback": false
+        },
+        "urban": null,
+        "extraUrban": null
+       },
+       "co2emissionInGramPerKmWithFallback": {
+        "raw": 107,
+        "formatted": "107 g/km (mixt)",
+        "isFallback": false
+       }
+      },
+      "additional": [],
+      "fuelCategory": {
+       "raw": "D",
+       "formatted": "Motorina"
+      },
+      "wltp": null,
+      "electricRangeWithFallback": null,
+      "electricRangeCity": null,
+      "allFuelTypes": [],
+      "battery": null
+     },
+     "engine": {
+      "engineDisplacementInCCM": {
+       "raw": 2191,
+       "formatted": "2.191 cm³"
+      },
+      "power": {
+       "kw": {
+        "raw": 110,
+        "formatted": "110 kW"
+       },
+       "hp": {
+        "raw": 150,
+        "formatted": "150 CP"
+       }
+      },
+      "transmissionType": {
+       "raw": "Manual",
+       "formatted": "Manuală"
+      },
+      "numberOfCylinders": 4,
+      "cylinderCapacity": {
+       "raw": 2191,
+       "unit": "ccm",
+       "formatted": "2.191 cm³"
+      },
+      "numberOfGears": 6,
+      "driveTrain": {
+       "formatted": "Faţă"
+      }
+     },
+     "condition": {
+      "firstRegistrationDate": {
+       "raw": "2017-08-01",
+       "formatted": "08/2017"
+      },
+      "mileageInKm": {
+       "raw": 222158,
+       "formatted": "222.158 km"
+      },
+      "numberOfPreviousOwnersExtended": {
+       "raw": 2,
+       "formatted": "2 proprietar ant."
+      },
+      "damage": {
+       "isCurrentlyDamaged": null,
+       "isRoadworthy": null,
+       "accidentFree": true,
+       "hasRepairedDamages": null,
+       "damageConditions": []
+      },
+      "nonSmoking": true,
+      "newInspection": false,
+      "isCabinClean": null,
+      "carpassMileageUrl": null
+     },
+     "bodyType": {
+      "formatted": "Autoturism mic",
+      "raw": "Compact"
+     },
+     "bodyColor": {
+      "raw": "Black",
+      "formatted": "Negru"
+     },
+     "numberOfBeds": {
+      "raw": null,
+      "formatted": "- (Număr locuri de dormit)"
+     },
+     "numberOfAxles": {
+      "raw": null,
+      "formatted": "- (Număr axe)"
+     },
+     "grossVehicleWeight": null,
+     "wheelBase": null,
+     "costModel": null,
+     "numberOfDoors": 5,
+     "paintType": {
+      "formatted": "Metalizat"
+     },
+     "bodyColorOriginal": "Onyxschwarz Metallic",
+     "interior": {
+      "numberOfSeats": 5,
+      "upholstery": {
+       "formatted": "Parţial piele"
+      },
+      "upholsteryColor": null
+     },
+     "emptyWeight": {
+      "formatted": "1.481 kg"
+     },
+     "totalHeight": null,
+     "totalWidth": null,
+     "maximumTowingWeight": null,
+     "payload": null,
+     "loadWidth": null,
+     "loadHeight": null,
+     "loadLength": null,
+     "loadVolume": null,
+     "hasCarRegistration": {
+      "raw": false
+     },
+     "environment": {
+      "particulateFilter": false,
+      "environmentLabelsWithFallback": [
+       {
+        "norm": "BImSchV_35",
+        "description": null,
+        "formatted": "4 (Verde)",
+        "label": "Green",
+        "isFallback": false
+       },
+       {
+        "norm": "EU_Directive_70_220_EEC_LDV",
+        "description": null,
+        "formatted": "Euro 6",
+        "label": "EURO6",
+        "isFallback": false
+       }
+      ]
+     },
+     "equipment": {
+      "as24": [
+       {
+        "id": {
+         "raw": 30,
+         "formatted": "Aer condiţionat automat"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 137,
+         "formatted": "Asistentul pentru pornirea din rampă"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 21,
+         "formatted": "banchetă spate rabatabilă"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 134,
+         "formatted": "Cotiera"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 113,
+         "formatted": "Funcţie start/stop"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 13,
+         "formatted": "Geamuri electrice"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 54,
+         "formatted": "Geamuri fumurii"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 34,
+         "formatted": "Încalzire scaune"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 121,
+         "formatted": "Oglinzi laterale electrice"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 127,
+         "formatted": "Senzor de ploaie"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 40,
+         "formatted": "senzor parcare"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 129,
+         "formatted": "Senzori de parcare spate"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 23,
+         "formatted": "Sistem navigaţie"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 38,
+         "formatted": "Tempomat"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 136,
+         "formatted": "Volan incalzit"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 114,
+         "formatted": "Volan multifuncţional"
+        },
+        "equipmentCategory": {
+         "raw": "comfortAndConvenience",
+         "formatted": "Confort"
+        }
+       },
+       {
+        "id": {
+         "raw": 122,
+         "formatted": "Bluetooth"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 43,
+         "formatted": "MP3"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 10,
+         "formatted": "Radio"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 138,
+         "formatted": "Radio digital"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 161,
+         "formatted": "USB"
+        },
+        "equipmentCategory": {
+         "raw": "entertainmentAndMedia",
+         "formatted": "Divertisment /Media"
+        }
+       },
+       {
+        "id": {
+         "raw": 211,
+         "formatted": "Anvelope all season"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 29,
+         "formatted": "Catalizator"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 156,
+         "formatted": "Comanda vocala"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 15,
+         "formatted": "Jante aluminiu"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 225,
+         "formatted": "Oglindă interioară cu diminuare automată a luminii"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 112,
+         "formatted": "Pachet sport"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 238,
+         "formatted": "Spoiler"
+        },
+        "equipmentCategory": {
+         "raw": "extras",
+         "formatted": "Opțiuni"
+        }
+       },
+       {
+        "id": {
+         "raw": 1,
+         "formatted": "ABS"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 2,
+         "formatted": "Airbag"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 3,
+         "formatted": "Airbag copilot"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 46,
+         "formatted": "airbag pentru cap"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 45,
+         "formatted": "Airbag spate"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 32,
+         "formatted": "Airbag-uri laterale"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 148,
+         "formatted": "Asistenta la franarea de urgenta"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 42,
+         "formatted": "ESP"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 19,
+         "formatted": "Faruri de ceaţă"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 140,
+         "formatted": "Faruri LED"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 17,
+         "formatted": "închidere centralizată"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 115,
+         "formatted": "Lumini de rulare pe timp de zi"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 150,
+         "formatted": "Monitorizare presiune anvelope"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       },
+       {
+        "id": {
+         "raw": 125,
+         "formatted": "Sistem Isofix de prindere a scaunului copil"
+        },
+        "equipmentCategory": {
+         "raw": "safetyAndSecurity",
+         "formatted": "Securitate"
+        }
+       }
+      ]
+     },
+     "alloyWheelInches": null,
+     "originalMarket": {
+      "formatted": "Germania"
+     },
+     "maintenance": {
+      "nextVehicleSafetyInspection": {
+       "formatted": "01/2027"
+      },
+      "lastBeltServiceDate": null,
+      "hasFullServiceHistory": {
+       "raw": true
+      },
+      "lastTechnicalServiceDate": {
+       "formatted": "02/2026"
+      }
+     },
+     "newDriverSuitable": null
+    }
+   },
+   "identifier": {
+    "offerReference": null,
+    "legacyId": null
+   },
+   "seals": null,
+   "location": {
+    "countryCode": "DE",
+    "zip": "46238",
+    "city": "Bottrop"
+   },
+   "webPage": "https://www.autoscout24.ro/oferte/mazda-3-exclusive-line-motorina-negru-cat_ma46mo18388-7a3345b0-442a-405e-bd99-8722495d1655",
+   "status": "Active",
+   "leasingDetails": null,
+   "warranty": null,
+   "warrantyExists": false,
+   "ocsInfo": {
+    "__typename": "NotOcs"
+   },
+   "financingAndInsurance": null,
+   "trackingParams": {
+    "classified_recency": "renewed",
+    "classified_makeId": 46,
+    "classified_makeTxt": "mazda",
+    "classified_modelID": 18388,
+    "classified_modelGroupID": 200954,
+    "classified_modelTxt": "3",
+    "classified_mileage": 222158,
+    "classified_power": 110,
+    "classified_price": 3490,
+    "classified_fueltype": "d",
+    "classified_transmission": "m",
+    "classified_equipment": "30,137,21,134,113,13,54,34,121,127,40,129,23,38,136,114,122,43,10,138,161,211,29,156,15,225,112,238,1,2,3,46,45,32,148,42,19,140,17,115,150,125",
+    "classified_offerType": "u",
+    "classified_prevOwners": 2,
+    "classified_doors": 5,
+    "classified_seats": 5,
+    "classified_customer_type": "d",
+    "classified_customerID": "61701398",
+    "classified_zipcode": "46238",
+    "classified_year": "2017",
+    "classified_consumption": 4.1,
+    "classified_capacity": 2191,
+    "classified_emission": 107,
+    "classified_bodyType": 1,
+    "classified_carSegment": "subcompact,compact",
+    "classified_country": "D",
+    "classified_emissionStandard": 6,
+    "classified_tier": "t50",
+    "classified_applied_tier": "t50",
+    "classified_superDealVehicle": "true",
+    "classified_images_threesixty": "standard",
+    "classified_dealerPackage": "pro",
+    "classified_exclusiveOffer": "false",
+    "classified_leadsRange": "some",
+    "classified_imageContent": "no-placeholder|0.2444230415198435",
+    "classified_isSmyleEligible": "false",
+    "classified_ownershipModels": "tr"
+   },
+   "appliedAdTier": "T50",
+   "adTier": "T50",
+   "specialConditions": [],
+   "hasPremiumListingTreatment": true,
+   "adTargetingString": "{\"mia\":\"true\",\"leasing\":\"false\",\"seg\":\"subcompact,compact\",\"did\":\"61701398\",\"stmil\":\"222158\",\"gear\":\"M\",\"make\":\"46\",\"stmak\":\"Mazda\",\"model\":\"18388\",\"stmod\":\"3\",\"cost\":\"3490\",\"stmon\":\"8\",\"styea\":\"2017\",\"ad\":\"dealer\",\"vat\":\"0\",\"art\":\"1\",\"carby\":\"0\",\"fr\":\"7\",\"stccm\":\"2191\",\"buyonline\":\"false\",\"stkw\":\"110\",\"sthp\":\"150\",\"equi\":\"1,129,2,3,134,136,137,10,138,140,13,15,17,19,211,148,21,150,23,156,29,30,32,161,225,34,38,42,43,45,238,46,112,113,114,115,54,121,122,125,127,49,110,40\",\"miles\":\"10\",\"img\":\"https://prod.pictures.autoscout24.net/listing-images/7a3345b0-442a-405e-bd99-8722495d1655_803cd840-0f96-4a55-ac31-fa9020fe79f8.jpg/720x540.webp\",\"price\":\"1\",\"rnd\":\"55\",\"ECO\":\"YES\",\"tsn\":\"AGM\",\"fuel\":\"D\",\"kenteken\":\"false\",\"hsn\":\"7118\",\"acc\":\"U\",\"hp\":\"7\",\"mgroupid\":\"200954\",\"type\":\"U\",\"atsd\":\"\",\"zip\":\"DE46238\",\"zip2\":\"46238\",\"articleType\":\"C\",\"tiered\":\"pro\"}",
+   "statistics": {
+    "leadsRange": "Some"
+   },
+   "imgAltText": "Mazda 3 Exclusive-Line Negru",
+   "createdTimestampWithOffset": "2026-09-23T10:30:32.880Z",
+   "vehicleType": "ice",
+   "searchTrackingParams": [
+    {
+     "key": "boost_level",
+     "value": "t50"
+    },
+    {
+     "key": "applied_boost_level",
+     "value": "t50"
+    },
+    {
+     "key": "relevance_adjustment",
+     "value": "organic"
+    },
+    {
+     "key": "boosting_product",
+     "value": "none"
+    }
+   ],
+   "articleType": "car",
+   "isNew": true
+  }
+ }
+}
