@@ -1,21 +1,12 @@
 """
-Curate the AutoScout24 scrape (autoscout24_*.json) into the same layout as the Autovit data
-from curate_cars.py: same columns, same English categories, same flags and training rules.
-Only listings that come with an equipment list (`features`) are kept.
+Curate the AutoScout24 scrape into the same layout as the Autovit data (curate_cars.py).
 
-Writes to data/curated_autoscout/ (git-ignored):
-  listings_clean   every kept listing, cleaned; dq_flags / train_exclude_reasons as in curate_cars.py
-  train            rows with no exclusion reason, model-ready columns
-each as Parquet (folder) + .json + .csv, plus README.md.
-
-The shared steps (duplicates, derived columns, flags, training rules, output layout) are imported
-from curate_cars.py, so both datasets are treated the same way. This file only holds what is
-specific to AutoScout24: its vocabulary, date format, naming and value checks.
+Writes listings_clean and train to data/curated_autoscout/ (git-ignored).
+The shared steps are imported from curate_cars.py; this file only holds what is specific
+to AutoScout24: vocabulary, names, date format and value checks.
 
 Usage (from the repo root):
   python scripts/curate_autoscout.py --input ../autoscout24_19din20.json
-
-Needs Java 17+ and pyspark >= 3.5 (pyspark 4.1.1+ on Python 3.14), like curate_cars.py.
 """
 
 import argparse
@@ -35,52 +26,46 @@ from curate_cars import as_map, is_true, to_int, with_columns
 # ---------------------------------------------------------------------------
 # Settings (tune here)
 # ---------------------------------------------------------------------------
-# Whether listings without an equipment list are dropped is set by KEEP_ONLY_WITH_FEATURES in
-# curate_cars.py, so both sites follow the same rule. In this scrape only the first ~18 minutes
-# opened each car's page; after that the equipment list is empty for every listing.
-READABLE_COPIES_MAX_ROWS = 200_000   # above this the .json/.csv copies would be ~1 GB, so they are skipped
+# The equipment-list filter is KEEP_ONLY_WITH_FEATURES in curate_cars.py (same rule for both sites).
+READABLE_COPIES_MAX_ROWS = 200_000   # no .json/.csv copies above this (they would be ~1 GB)
 
-# Values outside these ranges are placeholders or typos in this scrape: set to null and flagged.
-PRICE_RANGE_EUR = (100, 5_000_000)       # listings at EUR 1 and EUR 28 million exist
-POWER_RANGE_HP = (2, 1_600)              # "1 hp" placeholders; a 1,899 hp microcar
-MILEAGE_MAX_KM = 999_998                 # 999,999 km is used for "unknown"
-DISPLACEMENT_RANGE_CM3 = (50, 10_000)    # 0 and 99,900 cm3 exist
+# Values outside these ranges are placeholders or typos: set to null and flagged.
+PRICE_RANGE_EUR = (100, 5_000_000)
+POWER_RANGE_HP = (2, 1_600)
+MILEAGE_MAX_KM = 999_998                 # 999,999 means "unknown"
+DISPLACEMENT_RANGE_CM3 = (50, 10_000)
 
 # ---------------------------------------------------------------------------
 # AutoScout24 vocabulary -> the English values used for the Autovit data
 # ---------------------------------------------------------------------------
 FUEL = {"Benzina": "petrol", "Motorina": "diesel", "Electric": "electric",
-        "Electric/Benzina": "hybrid", "Electric/Motorina": "hybrid",   # plug-ins are detected below
+        "Electric/Benzina": "hybrid", "Electric/Motorina": "hybrid",   # plug-ins detected below
         "GPL": "petrol_lpg", "Gaz petrolier compresat": "petrol_cng",
         "Etanol": "ethanol", "Hidrogen": "hydrogen", "Diverse": "other"}
 TRANSMISSION = {"Automata": "automatic", "Manuala": "manual", "Semi-automata": "automatic"}
-# AutoScout's body types are coarser than Autovit's: 'Berlina' covers saloons and hatchbacks,
-# 'Autoturism mic' covers city cars and small cars.
 BODY = {"Off-road/4x4/Pick-up": "suv", "Berlina": "sedan", "Combi": "estate", "Autoturism mic": "small_car",
         "Van": "mpv", "Cabriolet / Roadster": "convertible", "Masina sport / Coupe": "coupe",
         "Altele": "other", "Autoutilitare": "commercial", "Duba": "commercial",
         "Duba cu acoperis inalt": "commercial"}
-COMMERCIAL_PATTERN = r"(?i)camion|duba|sasiu|bena|basculare|autoutilitar"   # trucks, chassis cabs...
+COMMERCIAL_PATTERN = r"(?i)camion|duba|sasiu|bena|basculare|autoutilitar"   # trucks
 COLOR = {"Negru": "black", "Alb": "white", "Gri": "grey", "Albastru": "blue", "Argintiu": "silver",
          "Rosu": "red", "Verde": "green", "Galben": "yellow_gold", "Auriu": "yellow_gold", "Maro": "brown",
          "Bej": "beige", "Portocaliu": "orange", "Violet": "other", "Bronz": "other"}
 
-# AutoScout has one hybrid category; Autovit separates plug-ins. Detected from model + version text:
-# 'PHEV', 'Plug-in', 'eHybrid', '18,4 kWh', 'NX 450h+', '330e', 'E 300 e', 'P400e', 'R-EV', 'EM-i'...
-# Text-based, so it misses plug-ins whose name gives no hint (e.g. Citroen 'Hybrid 225').
+# AutoScout has one hybrid category; plug-ins are recognised from the name ('PHEV', '330e', 'NX 450h+').
 PLUGIN_PATTERN = (r"(?i)phev|plug-?in|e-?hybrid|kwh|recharge|em-i|dm-i|range extender|r-ev|reev"
                   r"|\b\d{2,3}h\+|\b\d{3} ?x?e\b|\bp\d{3}e\b")
 
 MAKE_SPELLING = {"BYD": "Byd", "CUPRA": "Cupra", "Lynk & Co": "Lynk&Co", "MINI": "Mini",
                  "SEAT": "Seat", "XEV": "Xev", "smart": "Smart"}   # Autovit's spelling
-NOT_A_MAKE = ["Altele", "Oldtimer"]     # the site's "other" / "classic car" placeholders
+NOT_A_MAKE = ["Altele", "Oldtimer"]     # placeholders for "other" / "classic"
 UNKNOWN_MODEL = "Altele"
-BMW_NUMBERED = r"^([1-8])\d{2}[a-zA-Z]*$"   # '320' -> 'Seria 3', as Autovit names it
-PORSCHE_911_CODES = ["930", "964", "993", "996", "997", "991", "992"]   # 911 generations used as model
+BMW_NUMBERED = r"^([1-8])\d{2}[a-zA-Z]*$"   # '320' -> 'Seria 3'
+PORSCHE_911_CODES = ["930", "964", "993", "996", "997", "991", "992"]   # '992' -> '911'
 
-REG_DATE_PATTERN = r"^(\p{L}+) (\d{4})$"   # 'februarie 2023' (no day)
+REG_DATE_PATTERN = r"^(\p{L}+) (\d{4})$"   # 'februarie 2023'
 
-# Same fields as the Autovit scrape plus `url`; `year` is sometimes a string ("2026").
+# As the Autovit scrape, plus `url`; `year` is sometimes a string.
 RAW_SCHEMA = T.StructType(
     [T.StructField("year", T.StringType()) if f.name == "year" else f for f in base.RAW_SCHEMA.fields]
     + [T.StructField("url", T.StringType())])
@@ -90,11 +75,8 @@ RAW_SCHEMA = T.StructType(
 # AutoScout-specific steps (each DataFrame -> DataFrame)
 # ---------------------------------------------------------------------------
 def json_array_to_lines(src: str, dst: str, keep=None) -> int:
-    """Stream a JSON array file into JSON Lines (one record per line) without loading it all.
-
-    Spark cannot split a file that is one big JSON array: it parses it in a single task, which
-    takes over 10 minutes for the 900 MB scrape. JSON Lines is read in parallel in seconds.
-    `keep(record)` can skip records on the way. Returns how many records the array had."""
+    """Convert the JSON array to JSON Lines (one record per line), which Spark reads in parallel;
+    a single JSON array takes over 10 minutes. `keep` filters records. Returns the record count."""
     decoder, skip = json.JSONDecoder(), re.compile(r"[\s,]*")
     n = 0
     with open(src, encoding="utf-8") as fin, open(dst, "w", encoding="utf-8") as fout:
@@ -110,7 +92,7 @@ def json_array_to_lines(src: str, dst: str, keep=None) -> int:
             except json.JSONDecodeError:
                 if eof:
                     raise
-                more = fin.read(1 << 20)          # record continues past the buffer: read more
+                more = fin.read(1 << 20)          # record continues past the buffer
                 eof = not more
                 buf, pos = buf[pos:] + more, 0
                 continue
@@ -121,7 +103,7 @@ def json_array_to_lines(src: str, dst: str, keep=None) -> int:
 
 
 def has_feature_list(record: dict) -> bool:
-    """Cheap pre-filter while converting; junk-only lists are removed by keep_listings_with_features."""
+    """Quick pre-filter during conversion."""
     return bool(record.get("features"))
 
 
@@ -130,9 +112,8 @@ def read_raw(spark: SparkSession, json_lines_path: str) -> DataFrame:
 
 
 def standardise_names(df: DataFrame) -> DataFrame:
-    """Make spelling as on Autovit; the site's 'Altele' (other) placeholders become null;
-    BMW '320' -> model 'Seria 3' (the number moves into the version if it is not there yet);
-    Porsche '992' -> model '911' with generation 992."""
+    """Names as on Autovit: 'MINI' -> 'Mini', BMW '320' -> 'Seria 3', Porsche '992' -> '911'.
+    'Altele' placeholders become null."""
     make, model, version = F.col("make"), F.col("model"), F.col("version")
     unknown_make = is_true(make.isin(*NOT_A_MAKE))
     unknown_model = is_true(model == UNKNOWN_MODEL)
@@ -180,8 +161,7 @@ def translate_categories(df: DataFrame) -> DataFrame:
 
 
 def parse_dates(df: DataFrame) -> DataFrame:
-    """'februarie 2023' -> 2023-02-01 (the site gives no day). `year` is the registration year
-    here (Autovit's is the production year); some years are strings ('2026') or typos (3026)."""
+    """'februarie 2023' -> 2023-02-01 (no day given). Invalid years become null."""
     seen = F.to_timestamp("first_seen_at")
     reg = F.trim(F.col("first_registration_date"))
     month = as_map(base.MONTHS)[F.lower(F.regexp_extract(reg, REG_DATE_PATTERN, 1))]
@@ -201,8 +181,7 @@ def parse_dates(df: DataFrame) -> DataFrame:
 
 
 def check_value_ranges(df: DataFrame) -> DataFrame:
-    """Placeholders and typos (EUR 1, 999,999 km, 1 hp, 0 cm3) -> null, flagged. Electric cars have
-    no engine displacement, as in the Autovit data."""
+    """Out-of-range values (EUR 1, 999,999 km, 1 hp) -> null. Electric cars get no displacement."""
     price, power = F.col("price_euro"), F.col("power_hp")
     mileage, disp = F.col("mileage_km"), F.col("engine_displacement_cm3")
     is_ev = is_true(F.col("fuel_type") == "electric")
@@ -216,7 +195,7 @@ def check_value_ranges(df: DataFrame) -> DataFrame:
         "power_hp": F.when(power_ok, power),
         "mileage_km": F.when(mileage_ok, mileage),
         "engine_displacement_cm3": F.when(~is_ev & is_true(disp_ok), disp),
-        "ev_range_km": F.lit(None).cast("int"),   # not published by AutoScout24
+        "ev_range_km": F.lit(None).cast("int"),   # not on AutoScout24
         "_f_price_out_of_range": is_true(~price_ok),
         "_f_power_out_of_range": is_true(~power_ok),
         "_f_mileage_out_of_range": is_true(~mileage_ok),
@@ -232,7 +211,7 @@ def add_porsche_generation(df: DataFrame) -> DataFrame:
 
 
 def exclude_commercial_vehicles(df: DataFrame) -> DataFrame:
-    """Vans and trucks are a different market from cars: kept in listings_clean, not in train."""
+    """Vans and trucks stay in listings_clean but not in train."""
     extra = F.when(F.col("body_type") == "commercial", F.array(F.lit("commercial_vehicle"))) \
              .otherwise(F.array().cast("array<string>"))
     return with_columns(df, {"train_exclude_reasons": F.concat("train_exclude_reasons", extra)})
