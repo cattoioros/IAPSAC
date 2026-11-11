@@ -1,15 +1,11 @@
 """
-Unite the curated Autovit data (data/curated) and AutoScout24 data (data/curated_autoscout) into
-one dataset, data/curated_merged/, in the same layout. Run curate_cars.py and curate_autoscout.py
-first. The `source` column tells the rows apart.
+Merge the curated Autovit and AutoScout24 data into data/curated_merged/ (same layout;
+`source` tells the sites apart). Run curate_cars.py and curate_autoscout.py first.
 
-Both inputs already contain only cars with an equipment list (KEEP_ONLY_WITH_FEATURES in
-curate_cars.py), so no car is dropped here. On top of a plain union it:
-  - reduces body types to categories both sites use the same way
-  - renames AutoScout's equipment options to Autovit's names, using scripts/feature_name_map.csv
+Besides combining the rows it:
+  - groups body types the two sites label differently
+  - renames AutoScout options to Autovit's names (scripts/feature_name_map.csv)
   - writes feature_counts.csv: how many cars from each site have each option
-
-Writes listings_clean and train (Parquet folder + .json + .csv), feature_counts.csv and README.md.
 
 Usage (from the repo root):
   python scripts/merge_curated.py
@@ -28,9 +24,8 @@ from curate_cars import as_map, with_columns
 
 AUTOSCOUT = "AutoScout24"            # value of `source` for AutoScout rows
 
-# AutoScout uses 'Berlina' and 'Autoturism mic' interchangeably for the same cars (a Golf is listed
-# 8,718 times as one and 2,866 times as the other), while Autovit splits them into four types.
-# The only consistent common category is all of them together.
+# AutoScout has no hatchback type and labels the same models 'Berlina' or 'Autoturism mic'
+# depending on the seller, so these four types are only comparable as one group.
 COMMON_BODY = {"sedan": "sedan_hatchback", "compact": "sedan_hatchback",
                "city_car": "sedan_hatchback", "small_car": "sedan_hatchback"}
 
@@ -61,8 +56,7 @@ def harmonise_body_types(df: DataFrame) -> DataFrame:
 
 
 def rename_autoscout_features(df: DataFrame, mapping: dict) -> DataFrame:
-    """AutoScout option names -> Autovit's. Names without an equivalent are kept as they are.
-    clean_features then recomputes the sorted list, feature_count and wheel_size_in."""
+    """AutoScout option names -> Autovit's; names without an equivalent are kept."""
     names = as_map(mapping)
     renamed = F.transform("features", lambda x: F.coalesce(names[x], F.regexp_replace(x, *WHEEL_RENAME)))
     df = with_columns(df, {
@@ -93,7 +87,7 @@ def print_report(merged: DataFrame, sources: list, counts: list) -> None:
     def per_source(df: DataFrame) -> dict:
         return {r["source"]: r["count"] for r in df.groupBy("source").count().collect()}
 
-    # train has no `source` column (same layout as the other train tables), so count it here
+    # train has no `source` column, so train rows are counted here
     listings, in_train = per_source(merged), per_source(merged.filter(F.size("train_exclude_reasons") == 0))
     print("\n================= MERGE REPORT =================")
     print(f"{'':<26}" + "".join(f"{s:>14}" for s in sources) + f"{'total':>10}")

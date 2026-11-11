@@ -1,28 +1,15 @@
 """
-Curate the Autovit.ro listings scrape (cars.json) for a used-car price model.
+Curate the Autovit.ro scrape (cars.json) for a used-car price model.
 
-Reads the raw JSON array written by car_details.py, fixes the scraper's known
-defects, and writes two Parquet tables:
-
-  <out>/listings_clean   every real listing with an equipment list, de-duplicated and cleaned
-                         (KEEP_ONLY_WITH_FEATURES = False keeps the ones without a list too).
-                         `dq_flags` records each automatic correction;
-                         `train_exclude_reasons` says why a row is left out
-                         of the training set (empty = included).
-  <out>/train            rows with no exclusion reason, model-ready columns.
-
-Each table is also saved as <out>/<table>.json (same shape as cars.json, for reading
-in an editor) and <out>/<table>.csv (opens in Excel / Numbers; lists joined with "; ").
-
-The default output folder is data/curated/, which .gitignore keeps out of the
-repo (the README says the data must not be pushed to GitHub).
+Writes to data/curated/ (git-ignored), each table as Parquet + .json + .csv:
+  listings_clean   cleaned, de-duplicated listings with an equipment list
+                   (dq_flags: corrections made; train_exclude_reasons: why a row is not in train)
+  train            rows with no exclusion reason, model-ready columns
 
 Usage (from the repo root):
-  python scripts/curate_cars.py                         # cars.json -> data/curated/
-  python scripts/curate_cars.py --input ../cars.json --out data/curated
+  python scripts/curate_cars.py --input ../cars.json
 
-Needs Java 17+ and pyspark >= 3.5. Tested with pyspark 4.0.1 (Python 3.13) and
-pyspark 4.1.1 (Python 3.14), Java 21; use 4.1.1+ on Python 3.14.
+Needs Java 17+ and pyspark >= 3.5 (4.1.1+ on Python 3.14).
 """
 
 import argparse
@@ -38,12 +25,12 @@ from pyspark.sql import types as T
 # ---------------------------------------------------------------------------
 # Thresholds (tune here)
 # ---------------------------------------------------------------------------
-KEEP_ONLY_WITH_FEATURES = True # equipment matters for price, so listings without a list are dropped
-NEW_CAR_MAX_KM = 100          # dealers list new cars at 1 / 5 / 10 km
-MAX_KM_PER_YEAR = 80_000       # above this, for a used car, year or mileage is likely wrong
-CLASSIC_MIN_AGE_YEARS = 30     # historic vehicles: priced as collectibles, not by depreciation
-MICROCAR_MAX_HP = 50          # licence-free quadricycles (Aixam, Ligier, Tazzari...)
-PRICE_CAP_EUR = 250_000        # supercars: too few listings to learn from
+KEEP_ONLY_WITH_FEATURES = True # drop listings without an equipment list
+NEW_CAR_MAX_KM = 100           # up to this mileage a car counts as new
+MAX_KM_PER_YEAR = 80_000       # more is likely a typo in year or mileage
+CLASSIC_MIN_AGE_YEARS = 30     # collectibles, priced differently
+MICROCAR_MAX_HP = 50           # licence-free quadricycles (Aixam, Ligier...)
+PRICE_CAP_EUR = 250_000        # supercars: too few to learn from
 EXOTIC_MAKES = ["Ferrari", "Lamborghini", "Rolls-Royce", "Bentley", "McLaren", "Aston Martin", "Lotus"]
 REQUIRED_FOR_TRAINING = ["price_euro", "make", "model", "year", "mileage_km", "power_hp",
                          "fuel_type", "transmission", "body_type"]
@@ -62,11 +49,11 @@ COLOR = {"Negru": "black", "Gri": "grey", "Alb": "white", "Albastru": "blue", "A
 MONTHS = {"ianuarie": 1, "februarie": 2, "martie": 3, "aprilie": 4, "mai": 5, "iunie": 6, "iulie": 7,
           "august": 8, "septembrie": 9, "octombrie": 10, "noiembrie": 11, "decembrie": 12}
 
-MAKE_ALIASES = {"SsangYong": "KGM"}  # same company, rebranded in 2023
+MAKE_ALIASES = {"SsangYong": "KGM"}  # rebranded in 2023
 MERCEDES_CHASSIS = {"W124": "E", "W126": "S", "W140": "S", "W201": "190", "123 C": "W123"}
 BODY_SUFFIX = r"(?i)\s+(4-door Coupe|Limuzina|Avant|Variant|Allroad|Allstreet|Sportback|Cabrio|Coup[eé]|3-portiere|Crossback)$"
 
-# Only used when fuel_type is missing; first match wins.
+# Fuel guessed from the version text when missing; first match wins.
 FUEL_FROM_VERSION = [
     (r"(?i)kwh|\bbev\b", "electric"),
     (r"(?i)phev|dm-i|plug-in", "plugin_hybrid"),
@@ -101,7 +88,7 @@ RAW_SCHEMA = T.StructType([
     T.StructField("features", T.ArrayType(T.StringType())),
 ])
 
-# Columns that identify "the same car" when looking for duplicate listings.
+# Columns that identify the same car (for duplicates).
 SPEC_COLUMNS = ["make", "model", "version", "year", "first_registration_date", "mileage_km", "fuel_type",
                 "transmission", "body_type", "engine_displacement_cm3", "power_hp", "color", "doors"]
 
@@ -126,58 +113,47 @@ def as_map(mapping: dict) -> Column:
 
 
 def to_int(c: Column) -> Column:
-    """Digits-only string -> int, anything else -> null (safe with ANSI mode on)."""
+    """Digits-only string -> int, otherwise null."""
     return F.when(c.rlike(r"^\d+$"), c.cast("int"))
 
 
 def is_true(c: Column) -> Column:
-    """Treat a null condition as False so flags are always boolean."""
+    """Null condition -> False."""
     return F.coalesce(c, F.lit(False))
 
 
 def with_columns(df: DataFrame, columns: dict) -> DataFrame:
-    """Like DataFrame.withColumns, but every expression is guaranteed to read the *input* columns.
-
-    Spark 4.0 can resolve the key of a map lookup (as_map(...)[F.col("x")]) against a new
-    column "x" defined in the same projection instead of the input one, which silently breaks
-    flags computed next to a replaced column. So new values are computed under temporary
-    names first and swapped in afterwards."""
+    """withColumns where every expression reads the input columns. Works around a Spark 4.0 bug:
+    a map lookup can read a new column with the same name instead of the original one."""
     tmp = {f"__new__{name}": expr for name, expr in columns.items()}
     df = df.withColumns(tmp)
     kept = [F.col(c) for c in df.columns if c not in columns and c not in tmp]
     return df.select(*kept, *[F.col(t).alias(name) for t, name in zip(tmp, columns)])
 
 
-# Every boolean column named _f_<name> becomes "<name>" in dq_flags at the end.
-
-
 # ---------------------------------------------------------------------------
-# Pipeline steps (each DataFrame -> DataFrame)
+# Pipeline steps. Boolean columns _f_<name> end up as "<name>" in dq_flags.
 # ---------------------------------------------------------------------------
 def read_raw(spark: SparkSession, path: str) -> DataFrame:
-    # The file is one JSON array spanning many lines, hence multiLine.
-    # FAILFAST: if a future scrape changes a field's type, fail loudly instead of nulling it.
+    # FAILFAST: stop if a future scrape changes a field's type
     return spark.read.schema(RAW_SCHEMA).option("multiLine", True).option("mode", "FAILFAST").json(path)
 
 
 def drop_empty_listings(df: DataFrame) -> DataFrame:
-    """Failed scrapes: only listing_id and the metadata fields survived."""
+    """Failed scrapes (only the id survived)."""
     return df.filter(F.col("make").isNotNull() | F.col("price_euro").isNotNull())
 
 
 def keep_listings_with_features(df: DataFrame) -> DataFrame:
-    """Listings whose equipment list has at least one real entry (not '', 'true', 'false')."""
+    """Keep listings with at least one real equipment entry."""
     real = F.filter(F.coalesce("features", F.array().cast("array<string>")),
                     lambda x: (F.trim(x) != "") & ~F.lower(x).isin("true", "false"))
     return df.filter(F.size(real) > 0)
 
 
 def realign_shifted_columns(df: DataFrame) -> DataFrame:
-    """car_details_from_link.py reads the page's top details (mileage, fuel, gearbox, body,
-    displacement, power) by position. When the page lacks one (e.g. no mileage on a new car),
-    every later value slides one column left: fuel_type='Automata', transmission='SUV',
-    body_type='1 498 cm3' or '286 CP', engine_displacement_cm3 holding the horsepower.
-    Recognise values by vocabulary, not position."""
+    """The scraper reads the details by position, so a missing one shifts the rest by one column
+    (fuel_type='Automata', transmission='SUV'). Values are put back by what they are."""
     fuel, trans, body = F.col("fuel_type"), F.col("transmission"), F.col("body_type")
     disp, power = F.col("engine_displacement_cm3"), F.col("power_hp")
 
@@ -215,11 +191,8 @@ def translate_categories(df: DataFrame) -> DataFrame:
 
 
 def fix_engine_columns(df: DataFrame) -> DataFrame:
-    """Same positional-read cause as above. Electric cars have no displacement on the page, so
-    the horsepower lands in engine_displacement_cm3 and the range (km) in power_hp
-    (Renault ZOE R135 -> 135 / 300). New cars whose page lacks a displacement carry the
-    horsepower there too (Mazda CX-30 -> 186, power_hp null). Real small engines
-    (Aixam: 479 cm3, 9 hp) have power filled in, so they are not touched."""
+    """Same cause: electric cars have hp in the displacement field and range in power_hp.
+    Cars with no displacement on the page also have hp there (under 600, power missing)."""
     disp, power = F.col("engine_displacement_cm3"), F.col("power_hp")
     not_shifted = ~F.col("_f_shifted_columns_realigned")
     is_ev = is_true(F.col("fuel_type") == "electric")
@@ -237,8 +210,7 @@ def fix_engine_columns(df: DataFrame) -> DataFrame:
 
 
 def fill_from_context(df: DataFrame) -> DataFrame:
-    """Missing fuel type: infer from the version text ('79 kWh', 'DM-i PHEV', '2.0 TSI').
-    Missing transmission on an electric car: they are all automatic."""
+    """Missing fuel: guessed from the version ('2.0 TSI' -> petrol). Missing gearbox on an EV: automatic."""
     fuel, version, trans = F.col("fuel_type"), F.col("version"), F.col("transmission")
     inferred = None
     for pattern, value in FUEL_FROM_VERSION:
@@ -255,8 +227,7 @@ def fill_from_context(df: DataFrame) -> DataFrame:
 
 
 def parse_dates(df: DataFrame) -> DataFrame:
-    """'9 februarie 2023' -> date. Handles a 2-digit year ('15 februarie 14'). Dates in the future
-    relative to the scrape are dropped. Also validates `year` (allows next model year)."""
+    """'9 februarie 2023' -> date; 2-digit years handled, future dates dropped. Also checks `year`."""
     seen = F.to_timestamp("first_seen_at")
     reg = F.trim(F.col("first_registration_date"))
 
@@ -283,9 +254,7 @@ def parse_dates(df: DataFrame) -> DataFrame:
 
 
 def parse_generation(df: DataFrame) -> DataFrame:
-    """'II [2016 - Prezent]', 'X253 [2015-2022]', 'C174 (2025-Present)', 'IV [2012 - 2019' ->
-    code / start year / end year (null = still in production). The seller picks this field and
-    it contradicts `year` in some listings; those are dropped rather than trusted."""
+    """'X253 [2015-2022]' -> code, start and end year. Dropped if it contradicts `year`."""
     g, year = F.col("generation"), F.col("year")
     code = F.trim(F.regexp_extract(g, GENERATION_PATTERN, 1))
     start = to_int(F.regexp_extract(g, GENERATION_PATTERN, 2))
@@ -300,12 +269,12 @@ def parse_generation(df: DataFrame) -> DataFrame:
     })
 
 
-WHEEL_FEATURE = r'^Jante (aliaj \d+|aluminiu \(\d+"\))$'   # Autovit 'Jante aliaj 18', AutoScout 'Jante aluminiu (18")'
+WHEEL_FEATURE = r'^Jante (aliaj \d+|aluminiu \(\d+"\))$'   # 'Jante aliaj 18', 'Jante aluminiu (18")'
 
 
 def clean_features(df: DataFrame) -> DataFrame:
-    """Drop junk entries ('', 'true', 'false'). An empty list means the equipment section was not
-    scraped, not that the car has no equipment, so it becomes null."""
+    """Remove junk entries; an empty list becomes null (unknown, not "no equipment").
+    Also counts the options and reads the wheel size."""
     kept = F.array_sort(F.array_distinct(F.filter(
         "features", lambda x: (F.trim(x) != "") & ~F.lower(x).isin("true", "false"))))
     features = F.when(F.size(kept) > 0, kept)
@@ -321,10 +290,7 @@ def clean_features(df: DataFrame) -> DataFrame:
 
 
 def model_family(make: Column, model: Column) -> Column:
-    """Coarser model name that groups variants:
-    'A4 Avant' -> 'A4', 'GLE Coupe' -> 'GLE', 'A 180' -> 'A' (Mercedes), 'W124' -> 'E',
-    'Seria RX' / 'RX 450h' -> 'RX' (Lexus), 'Grandland X' -> 'Grandland' (Opel),
-    'T6.1 Transporter' -> 'Transporter' (VW). Also used by curate_autoscout.py."""
+    """Groups variants: 'A4 Avant' -> 'A4', Mercedes 'A 180' -> 'A', Lexus 'RX 450h' -> 'RX'."""
     fam = F.regexp_replace(model, BODY_SUFFIX, "")
     lexus = F.regexp_extract(fam, r"^(?:Seria\s+)?([A-Z]{2,3})\b", 1)
     fam = F.when((make == "Lexus") & (lexus != ""), lexus).otherwise(fam)
@@ -336,8 +302,7 @@ def model_family(make: Column, model: Column) -> Column:
 
 
 def normalise_make_model(df: DataFrame) -> DataFrame:
-    """Merge rebranded makes, unify model spellings that differ only in case ('cla' vs 'CLA',
-    the most common spelling wins), and add model_family."""
+    """Rebranded makes merged, model spellings unified ('cla' -> 'CLA'), model_family added."""
     df = with_columns(df, {
         "make": F.coalesce(as_map(MAKE_ALIASES)[F.col("make")], F.col("make")),
         "_f_make_alias_merged": is_true(F.col("make").isin(*MAKE_ALIASES)),
@@ -353,8 +318,8 @@ def normalise_make_model(df: DataFrame) -> DataFrame:
 
 
 def add_derived_columns(df: DataFrame) -> DataFrame:
-    """Age comes from `year` (assumed mid-year build): the registration date is often the
-    Romanian registration of an imported car, so it can be years later than the build."""
+    """Age, km per year, new car, AWD. Age uses `year`: for imports the registration date
+    can be years later than the build."""
     seen = F.to_date("first_seen_at")
     age = F.greatest(F.datediff(seen, F.make_date(F.col("year"), F.lit(7), F.lit(1))) / 365.25, F.lit(0.0))
     km_per_year = F.col("mileage_km") / F.greatest(age, F.lit(1.0))
@@ -370,9 +335,8 @@ def add_derived_columns(df: DataFrame) -> DataFrame:
 
 
 def drop_duplicate_listings(df: DataFrame) -> DataFrame:
-    """The same car posted more than once. Used cars: identical specs (the price may have changed
-    on a relist). New cars: dealers stock identical units, so they also need the same price and
-    equipment. Keeps the most recently seen listing; `duplicate_listings` counts the others."""
+    """Same car posted more than once (new cars must also match price and equipment).
+    Keeps the latest listing; duplicate_listings counts the others."""
     used = is_true(F.col("mileage_km") > NEW_CAR_MAX_KM)
     key = F.when(used, F.to_json(F.struct(*SPEC_COLUMNS))) \
            .otherwise(F.to_json(F.struct(*SPEC_COLUMNS, "price_euro", "features")))
@@ -386,7 +350,7 @@ def drop_duplicate_listings(df: DataFrame) -> DataFrame:
 
 
 def mark_training_rows(df: DataFrame) -> DataFrame:
-    """Rows a mainstream used-car price model should not learn from. Kept in listings_clean."""
+    """Why a row is left out of train (it stays in listings_clean)."""
     checks = {f"missing_{c}": F.col(c).isNull() for c in REQUIRED_FOR_TRAINING}
     checks.update({
         "exotic_or_above_price_cap": F.col("make").isin(*EXOTIC_MAKES) | (F.col("price_euro") > PRICE_CAP_EUR),
@@ -426,12 +390,11 @@ def build_training_set(clean: DataFrame) -> DataFrame:
 
 
 def write_readable_copies(df: DataFrame, path_stem: str) -> None:
-    """Write <path_stem>.json and <path_stem>.csv so the result can be opened without Spark.
-    Collects the table to the driver: fine for thousands of rows, not for millions."""
+    """Also save the table as .json and .csv (loads it into memory: fine for small tables)."""
     rows = [r.asDict(recursive=True) for r in df.collect()]
     with open(f"{path_stem}.json", "w", encoding="utf-8") as f:
-        json.dump(rows, f, indent=4, ensure_ascii=False, default=str)  # dates -> "2023-07-14"
-    # utf-8-sig so Excel shows characters like the "ë" in Citroën correctly
+        json.dump(rows, f, indent=4, ensure_ascii=False, default=str)
+    # utf-8-sig so Excel shows diacritics correctly
     with open(f"{path_stem}.csv", "w", newline="", encoding="utf-8-sig") as f:
         writer = csv.writer(f)
         writer.writerow(df.columns)
@@ -518,7 +481,7 @@ def main() -> None:
     for name, table in [("listings_clean", clean), ("train", train)]:
         table.coalesce(1).write.mode("overwrite").parquet(f"{args.out}/{name}")
         write_readable_copies(table, f"{args.out}/{name}")
-    # data/ is git-ignored, so the instructions live next to this script and are copied in
+    # data/ is git-ignored, so the README template lives in scripts/
     shutil.copyfile(Path(__file__).with_name("curated_data_README.md"), Path(args.out) / "README.md")
 
     raw_n, scraped_n = raw.count(), scraped.count()
